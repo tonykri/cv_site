@@ -104,7 +104,7 @@ export default function EditProfile() {
                                 </div>
                             </div>
                             <div className="mx-4">
-                                <div className="mb-6">
+                                <div className="mb-6 mt-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Awards:
                                         <input type="text" id="awards" className={cssUnit} value={awards} onChange={(e) => setAwards(e.target.value)} />
@@ -114,7 +114,7 @@ export default function EditProfile() {
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Years of work experience:
                                         <div>{yearsExp}</div>
-                                        <input type="range" id="yearsOfExp" min={0} max={50} className={cssUnit} value={yearsExp} onChange={(e) => setYearsExp(e.target.value)} />
+                                        <input type="range" id="yearsOfExp" min={0} max={40} className={cssUnit} value={yearsExp} onChange={(e) => setYearsExp(e.target.value)} />
                                     </label>
                                 </div>
                                 <div className="mb-6">
@@ -137,7 +137,7 @@ export default function EditProfile() {
                                 </div>
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Voluntiring experience:
+                                        Volunteering experience:
                                         <input type="text" id="volExp" className={cssUnit} value={volExp} onChange={(e) => setvolExp(e.target.value)} />
                                     </label>
                                 </div>

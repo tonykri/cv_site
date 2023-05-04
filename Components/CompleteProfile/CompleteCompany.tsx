@@ -1,13 +1,17 @@
 'use client'
 import { useState } from "react";
+import { usePathname } from 'next/navigation';
+import { Button } from "flowbite-react";
 
 export default function CompleteCompany(){
+    const pathname = usePathname();
+
     const [viewSuccess, setViewSuccess] = useState(false);
     const [website, setWebsite] = useState("");
     const [headquarters, setHeadquarters] = useState("");
-    const [founded, setFounded] = useState("");
+    const [founded, setFounded] = useState("1960");
     const [about, setAbout] = useState("");
-    const [employees, setEnployees] = useState("1");
+    const [size, setSize] = useState("s");
 
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
@@ -53,14 +57,18 @@ export default function CompleteCompany(){
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Founded:
-                                        <input type="date" id="date" className={cssUnit} value={founded} onChange={(e) => setFounded(e.target.value)} />
+                                        <div>{founded}</div>
+                                        <input type="range" id="yearsOfExp" min={1960} max={2023} className={cssUnit} value={founded} onChange={(e) => setFounded(e.target.value)} />
                                     </label>
                                 </div>
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Employees:
-                                        <div>{employees}</div>
-                                        <input type="range" id="yearsOfExp" min={1} max={1000} className={cssUnit} value={employees} onChange={(e) => setEnployees(e.target.value)} />
+                                        <div className="mt-1 flex gap-4">
+                                            <Button size='sm' color={size==='s'?'success':'gray'} pill={true} onClick={()=>setSize('s')}>0-50</Button>
+                                            <Button size='sm' color={size==='m'?'success':'gray'} pill={true} onClick={()=>setSize('m')}>51-200</Button>
+                                            <Button size='sm' color={size==='l'?'success':'gray'} pill={true} onClick={()=>setSize('l')}>201+</Button>
+                                        </div>
                                     </label>
                                 </div>
 
@@ -75,7 +83,7 @@ export default function CompleteCompany(){
                                 </div>
                                
                                 <div className="mb-6 flex justify-start">
-                                    <button type="submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-1/2 sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Complete Registration</button>
+                                    <button type="submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-1/2 sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{pathname==="/completeprofile"?"Complete Registration":"Update Info"}</button>
                                 </div>
                             </div>
                         </div>

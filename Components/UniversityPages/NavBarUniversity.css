@@ -1,0 +1,10 @@
+.NavBarLogo, .CloseFiltersBtn, .LogoutIcon{
+    cursor:pointer;
+}
+.barsBG{
+    background-color: #fafafa;
+}
+
+.Departments{
+    width:50%;
+}
