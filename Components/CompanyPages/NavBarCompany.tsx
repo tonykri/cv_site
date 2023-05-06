@@ -63,7 +63,7 @@ export default function NavBarCompany(props: any) {
                             <AiOutlineUser />
                         </Tooltip>
                     </Navbar.Link>
-                    <Navbar.Link className="mt-2 text-lg" href="/company/profile">
+                    <Navbar.Link className="mt-2 text-lg" href="/company/notifications">
                         <Tooltip content="Notifications">
                             <IoIosNotificationsOutline />
                         </Tooltip>

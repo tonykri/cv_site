@@ -2,6 +2,7 @@
 
 import { Navbar, Tooltip } from "flowbite-react"
 import { AiOutlineUser } from 'react-icons/ai'
+import { IoMdNotificationsOutline } from 'react-icons/io'
 import { FiLogOut } from 'react-icons/fi'
 import AdminSearchForm from "./AdminSearchForm"
 import { usePathname } from 'next/navigation';
@@ -44,6 +45,11 @@ export default function NavBarAdmin(props: any) {
                     <Navbar.Link className="mt-2 text-lg" href="/admin/profile">
                         <Tooltip content="View Profile">
                             <AiOutlineUser />
+                        </Tooltip>
+                    </Navbar.Link>
+                    <Navbar.Link className="mt-2 text-lg" href="/admin/notifications">
+                        <Tooltip content="Notifications">
+                            <IoMdNotificationsOutline />
                         </Tooltip>
                     </Navbar.Link>
                     <Navbar.Link className="mt-2 text-lg" href="/" onClick={() => console.log()}>

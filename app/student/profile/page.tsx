@@ -2,6 +2,7 @@
 import ChangePasswordForm from "@/Components/ChangePasswordForm";
 import EditProfile from "@/Components/StudentPages/EditProfile";
 import NavBarStudent from "@/Components/StudentPages/NavBarStudent";
+import SavedCompaniesWrapper from "@/Components/StudentPages/SavedCompaniesWrapper";
 import StudentProfileSideBar from "@/Components/StudentPages/StudentProfileSideBar";
 import { useState } from "react";
 
@@ -17,6 +18,7 @@ export default function Home() {
       <div className="flex">
         <StudentProfileSideBar setPanel={setPanel}/>
         <div className="h-screen w-full">
+        {panel==="savedCompanies" && <SavedCompaniesWrapper/>}
           {panel==="changePass" && <ChangePasswordForm/>}
           {panel==="EditProfile" && <EditProfile/>}
         </div>

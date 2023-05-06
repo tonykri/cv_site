@@ -10,8 +10,6 @@ export default function EditProfile() {
     const [viewSuccess, setViewSuccess] = useState(false);
     const [university, setUniversity] = useState("");
     const [department, setDepartment] = useState("");
-    const [gradYear, setGradYear] = useState("");
-    const [diplomaId, setDiplomaId] = useState("");
     const [school, setSchool] = useState("");
     const [languages, setLanguages] = useState("");
     const [certifications, setCertifications] = useState("");
@@ -72,18 +70,7 @@ export default function EditProfile() {
                                         </select>
                                     </label>
                                 </div>
-                                <div className="mb-6">
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Graduation Year:
-                                        <input type="number" id="gradYear" className={cssUnit} value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
-                                    </label>
-                                </div>
-                                <div className="mb-6">
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Diploma ID:
-                                        <input type="text" id="diplomaId" className={cssUnit} value={diplomaId} onChange={(e) => setDiplomaId(e.target.value)} />
-                                    </label>
-                                </div>
+                               
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         High School:
@@ -102,15 +89,16 @@ export default function EditProfile() {
                                         <input type="text" id="certifications" className={cssUnit} value={certifications} onChange={(e) => setCertifications(e.target.value)} />
                                     </label>
                                 </div>
-                            </div>
-                            <div className="mx-4">
-                                <div className="mb-6 mt-6">
+                                <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Awards:
                                         <input type="text" id="awards" className={cssUnit} value={awards} onChange={(e) => setAwards(e.target.value)} />
                                     </label>
                                 </div>
-                                <div className="mb-6">
+                            </div>
+                            <div className="mx-4">
+                                
+                                <div className="mb-6 mt-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Years of work experience:
                                         <div>{yearsExp}</div>
