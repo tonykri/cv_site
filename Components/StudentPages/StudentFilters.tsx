@@ -8,6 +8,11 @@ import './NavBarStudent.css'
 
 export default function StudentFilters(props: any) {
     const [industry, setIndustry] = useState('All')
+    const [experience, setExperience] = useState('')
+    const [headquarters, setHeadquarters] = useState('')
+
+
+    const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
     return (
         <div>
@@ -27,6 +32,14 @@ export default function StudentFilters(props: any) {
 
                 <Navbar.Collapse>
 
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Headquarters:
+                        <input type="text" id="headquarters" className={cssUnit} value={headquarters} onChange={(e) => setHeadquarters(e.target.value)} />
+                    </label>
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Experience (min):
+                        <input type="number" id="gradB" className={cssUnit} value={experience} onChange={(e) => setExperience(e.target.value)} />
+                    </label>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Indurstry:
                         <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

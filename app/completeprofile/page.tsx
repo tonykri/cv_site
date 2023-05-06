@@ -5,7 +5,7 @@ import { useState } from "react";
 
 
 export default function Home() {
-  const [showStudent, setShowStudent] = useState(true)
+  const [showStudent, setShowStudent] = useState(false)
 
   return (
     <div className="container mx-auto my-5">

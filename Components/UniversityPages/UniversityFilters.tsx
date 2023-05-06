@@ -8,6 +8,11 @@ import './NavBarUniversity.css'
 
 export default function UniversityFilters(props: any) {
     const [industry, setIndustry] = useState('All')
+    const [gradYearBefore, setGradYearBefore] = useState('')
+    const [gradYearAfter, setGradYearAfter] = useState('')
+
+
+    const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
     return (
         <div>
@@ -26,9 +31,17 @@ export default function UniversityFilters(props: any) {
                 </div>
 
                 <Navbar.Collapse>
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Graduation Year (After):
+                        <input type="number" id="gradB" className={cssUnit} value={gradYearAfter} onChange={(e) => setGradYearAfter(e.target.value)} />
+                    </label>
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Graduation Year (before):
+                        <input type="number" id="gradB" className={cssUnit} value={gradYearBefore} onChange={(e) => setGradYearBefore(e.target.value)} />
+                    </label>
 
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Indurstry:
+                        Department:
                         <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="" selected onClick={(e) => setIndustry("All")}>All</option>
                             <option value="" onClick={(e) => setIndustry("Technology")}>Technology</option>

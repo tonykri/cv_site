@@ -3,6 +3,7 @@
 import { useState } from "react"
 import NavBarCompany from "./NavBarCompany"
 import CompanyFilters from "./CompanyFilters"
+import StudentsWrapper from "../CompanyPages/StudentsWrapper"
 
 
 export default function NavBarFiltersWrapper() {
@@ -12,6 +13,7 @@ export default function NavBarFiltersWrapper() {
         <div>
             <NavBarCompany setShowFilters={setShowFilters} />
             {showFilters && <CompanyFilters setShowFilters={setShowFilters} />}
+            <StudentsWrapper/>
         </div>
     )
 }

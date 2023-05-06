@@ -13,6 +13,10 @@ import ThemeBtn from "../ThemeBtn"
 export default function NavBarAdmin(props: any) {
     const pathname = usePathname();
 
+    function setUser(category: string){
+        props.setUser(category)
+    }
+
     return (
         <div>
             <Navbar
@@ -32,7 +36,7 @@ export default function NavBarAdmin(props: any) {
                         <ThemeBtn />
                     </div>
                     <div className="md:flex hidden">
-                        <AdminSearchForm />
+                        <AdminSearchForm setUser={setUser}/>
                     </div>
                     <Navbar.Toggle />
                 </div>

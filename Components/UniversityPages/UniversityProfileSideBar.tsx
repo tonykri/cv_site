@@ -65,6 +65,11 @@ export default function UniversityProfileSideBar(props: any) {
                                         Change Password
                                     </Button>
                                 </div>
+                                <div className="mb-4">
+                                    <Button className="w-full" onClick={() => props.setPanel("ContactAdmin")}>
+                                        Contact Admin
+                                    </Button>
+                                </div>
                                 <div>
                                     <React.Fragment>
                                         <Button onClick={()=>setShowModal(true)} className="w-full" color="failure">

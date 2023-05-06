@@ -2,13 +2,22 @@
 
 import { Dropdown } from "flowbite-react"
 import { useState } from "react"
+import { usePathname } from 'next/navigation';
 
-export default function AdminSearchForm() {
+export default function AdminSearchForm(props:any) {
+    const pathname = usePathname();
+
     const [input, setInput] = useState("")
     const [user, setUser] = useState("Student")
 
     function handleSubmit(e: any) {
         e.preventDefault()
+    }
+
+    function setCategory(category: string) {
+        setUser(category)
+        if(pathname === '/admin/home')
+            props.setUser(category)
     }
 
     return (
@@ -19,13 +28,13 @@ export default function AdminSearchForm() {
                     dismissOnClick={true}
                     color={'gray'}
                 >
-                    <Dropdown.Item onClick={()=>setUser("Student")}>
+                    <Dropdown.Item onClick={()=>setCategory('Student')}>
                         Student
                     </Dropdown.Item>
-                    <Dropdown.Item onClick={()=>setUser("Company")}>
+                    <Dropdown.Item onClick={()=>setCategory("Company")}>
                         Company
                     </Dropdown.Item>
-                    <Dropdown.Item onClick={()=>setUser("University")}>
+                    <Dropdown.Item onClick={()=>setCategory("University")}>
                         University
                     </Dropdown.Item>
                 </Dropdown>

@@ -13,6 +13,7 @@ export default function AddUniversityForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [vat, setVat] = useState("");
 
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
@@ -51,7 +52,7 @@ export default function AddUniversityForm() {
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 VAT Number:
-                                <input type="number" id="VAT" className={cssUnit} value={website} onChange={(e) => setWebsite(e.target.value)} />
+                                <input type="number" id="VAT" className={cssUnit} value={vat} onChange={(e) => setVat(e.target.value)} />
                             </label>
                         </div>
 

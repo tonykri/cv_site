@@ -1,5 +1,6 @@
 'use client'
 import ChangePasswordForm from "@/Components/ChangePasswordForm";
+import ContactAdminForm from "@/Components/ContactAdminForm";
 import EditProfile from "@/Components/UniversityPages/EditProfile";
 import NavBarUniversity from "@/Components/UniversityPages/NavBarUniversity";
 import UniversityProfileSideBar from "@/Components/UniversityPages/UniversityProfileSideBar";
@@ -19,6 +20,7 @@ export default function Home() {
         <div className="h-screen w-full">
           {panel==="changePass" && <ChangePasswordForm/>}
           {panel==="EditProfile" && <EditProfile/>}
+          {panel==="ContactAdmin" && <ContactAdminForm/>}
         </div>
       </div>
     </div>

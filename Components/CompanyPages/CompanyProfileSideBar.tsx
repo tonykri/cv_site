@@ -44,8 +44,8 @@ export default function CompanyProfileSideBar(props: any) {
                         </Sidebar.ItemGroup>
                         <Sidebar.ItemGroup>
                             <div>
-                                <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("savedCompanies")}>
+                            <div className="mb-4">
+                                    <Button className="w-full" onClick={() => props.setPanel("SavedStudents")}>
                                         Saved Students
                                     </Button>
                                 </div>
@@ -57,6 +57,11 @@ export default function CompanyProfileSideBar(props: any) {
                                 <div className="mb-4">
                                     <Button className="w-full" onClick={() => props.setPanel("changePass")}>
                                         Change Password
+                                    </Button>
+                                </div>
+                                <div className="mb-4">
+                                    <Button className="w-full" onClick={() => props.setPanel("ContactAdmin")}>
+                                        Contact Admin
                                     </Button>
                                 </div>
                                 <div>

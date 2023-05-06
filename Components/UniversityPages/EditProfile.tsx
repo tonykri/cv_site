@@ -8,6 +8,12 @@ export default function EditProfile() {
     const [viewSuccess, setViewSuccess] = useState(false);
     const [viewSuccessAdmin, setViewSuccessAdmin] = useState(false);
     const [departments, setDepartments] = useState(['depadsfsdrt', 'bdesdpart', 'deparsstc', 'ddepgfdgrart', 'depergarte', 'fdeergerpart', 'depvcartg', 'desdfparth', 'idsdfeepart', 'debpgbart', 'bdepnhgmart', 'depghgartc', 'ddrthepart', 'depanfgnfrte', 'fdnfgnfgntrepart', 'dertpahrtg', 'dertryparth', 'ideryrypart'])
+    const [website, setWebsite] = useState("");
+    const [headquarters, setHeadquarters] = useState("");
+    const [founded, setFounded] = useState("1960");
+    const [about, setAbout] = useState("");
+    const [email, setEmail] = useState("");
+    const [vat, setVat] = useState("");
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
@@ -58,7 +64,7 @@ export default function EditProfile() {
                                     <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                                     <span className="sr-only">Check icon</span>
                                 </div>
-                                <div className="ml-3 text-sm font-normal">Request sent successfully.</div>
+                                <div className="ml-3 text-sm font-normal">Updated successfully.</div>
                                 <button type="button" className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close" onClick={() => setViewSuccessAdmin(false)}>
                                     <span className="sr-only">Close</span>
                                     <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -66,12 +72,30 @@ export default function EditProfile() {
                             </div>}
                             <div className="mb-6">
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Request to Admin:
-                                    <textarea rows={10} id="volExp" className={cssUnit} value={name} onChange={(e) => setName(e.target.value)} required />
+                                    Founded:
+                                    <div>{founded}</div>
+                                <input type="range" id="yearsOfExp" min={1960} max={2023} className={cssUnit} value={founded} onChange={(e) => setFounded(e.target.value)} />                                </label>
+                            </div>
+                            <div className="mb-6">
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Email:
+                                    <input type="email" id="email" placeholder="email@example.com" className={cssUnit} value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                                </label>
+                            </div>
+                            <div className="mb-6">
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Website:
+                                    <input type="text" id="website" placeholder="www.example.gr" className={cssUnit} value={website} onChange={(e) => setWebsite(e.target.value)} required/>
+                                </label>
+                            </div>
+                            <div className="mb-6">
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    About:
+                                    <textarea id="about" rows={8} className={cssUnit} value={about} onChange={(e) => setAbout(e.target.value)} required/>
                                 </label>
                             </div>
                             <div className="mb-6 flex justify-start">
-                                <button type="submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-1/2 sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send</button>
+                                <button type="submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-1/2 sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
                             </div>
                         </form>
                     </div>
