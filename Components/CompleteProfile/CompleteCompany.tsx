@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { usePathname } from 'next/navigation';
 import { Button } from "flowbite-react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function CompleteCompany(){
     const pathname = usePathname();
@@ -11,14 +13,38 @@ export default function CompleteCompany(){
     const [headquarters, setHeadquarters] = useState("");
     const [founded, setFounded] = useState("1960");
     const [about, setAbout] = useState("");
-    const [size, setSize] = useState("s");
+    const [size, setSize] = useState("SMALL");
 
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
+    const router = useRouter();
+
     async function handleSubmit(e: any) {
         e.preventDefault();
 
+        axios.put('http://localhost:8080/update/company', {
+            "website": website,
+            "headquarters": headquarters,
+            "founded": founded,
+            "about": about,
+            "companySize": size
+
+        }, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data);
+            if (pathname === '/completeprofile') {
+                if (localStorage.getItem('role') === 'STUDENT')
+                    router.push('/student/home');
+                else
+                    router.push('/company/home');
+            }
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
 
@@ -65,9 +91,9 @@ export default function CompleteCompany(){
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Employees:
                                         <div className="mt-1 flex gap-4">
-                                            <Button size='sm' color={size==='s'?'success':'gray'} pill={true} onClick={()=>setSize('s')}>0-50</Button>
-                                            <Button size='sm' color={size==='m'?'success':'gray'} pill={true} onClick={()=>setSize('m')}>51-200</Button>
-                                            <Button size='sm' color={size==='l'?'success':'gray'} pill={true} onClick={()=>setSize('l')}>201+</Button>
+                                            <Button size='sm' color={size==='SMALL'?'success':'gray'} pill={true} onClick={()=>setSize('SMALL')}>0-50</Button>
+                                            <Button size='sm' color={size==='MEDIUM'?'success':'gray'} pill={true} onClick={()=>setSize('MEDIUM')}>51-200</Button>
+                                            <Button size='sm' color={size==='LARGE'?'success':'gray'} pill={true} onClick={()=>setSize('LARGE')}>201+</Button>
                                         </div>
                                     </label>
                                 </div>

@@ -17,6 +17,11 @@ export default function NavBarAdmin(props: any) {
         props.setUser(category)
     }
 
+    function handleLogout(){
+        localStorage.removeItem('token')
+        localStorage.removeItem('role')
+    }
+
     return (
         <div>
             <Navbar
@@ -56,7 +61,7 @@ export default function NavBarAdmin(props: any) {
                             <IoMdNotificationsOutline />
                         </Tooltip>
                     </Navbar.Link>
-                    <Navbar.Link className="mt-2 text-lg" href="/" onClick={() => console.log()}>
+                    <Navbar.Link className="mt-2 text-lg" href="/" onClick={() => handleLogout()}>
                         <Tooltip content="Logout">
                             <FiLogOut />
                         </Tooltip>

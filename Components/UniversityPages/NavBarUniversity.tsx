@@ -12,6 +12,11 @@ import ThemeBtn from "../ThemeBtn"
 export default function NavBarUniversity(props: any) {
     const pathname = usePathname();
 
+    function handleLogout(){
+        localStorage.removeItem('token')
+        localStorage.removeItem('role')
+    }
+
     return (
         <div>
             <Navbar
@@ -47,7 +52,7 @@ export default function NavBarUniversity(props: any) {
                             <AiOutlineUser />
                         </Tooltip>
                     </Navbar.Link>
-                    <Navbar.Link className="mt-2 text-lg" href="/" onClick={() => console.log()}>
+                    <Navbar.Link className="mt-2 text-lg" href="/" onClick={() => handleLogout()}>
                         <Tooltip content="Logout">
                             <FiLogOut />
                         </Tooltip>

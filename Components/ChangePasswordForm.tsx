@@ -1,4 +1,5 @@
 'use client'
+import axios from "axios";
 import { useState } from "react";
 
 export default function ChangePasswordForm() {
@@ -13,6 +14,21 @@ export default function ChangePasswordForm() {
     async function handleSubmit(e: any) {
         e.preventDefault();
         setWrongCredentials(false);
+        axios.put('http://localhost:8080/account/changePassword', {
+            "currentPassword": currentPassword,
+            "newPassword": password,
+            "confirmPassword": confirmPassword
+        }, {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            } 
+        }).then(res => {
+            console.log(res.data);
+            setViewSuccess(true);
+        }).catch(err => {
+            setWrongCredentials(true);
+            console.log(err);
+        });
 
     }
 

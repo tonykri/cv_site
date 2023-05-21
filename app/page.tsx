@@ -10,9 +10,9 @@ export default function Home() {
           <LogoInfoSide />
         </div>
         <div className="w-screen  lg:w-3/5 lg:h-screen items-center justify-center flex relative">
-          <div className="top-4 right-4 absolute">
+          {/*<div className="top-4 right-4 absolute">
             <ThemeBtn />
-          </div>
+  </div>*/}
           <LoginRegisterWrapper />
         </div>
       </div>

@@ -1,5 +1,6 @@
 'use client'
 import ChangePasswordForm from "@/Components/ChangePasswordForm";
+import ContactUniForm from "@/Components/StudentPages/ContactUniForm";
 import EditProfile from "@/Components/StudentPages/EditProfile";
 import NavBarStudent from "@/Components/StudentPages/NavBarStudent";
 import SavedCompaniesWrapper from "@/Components/StudentPages/SavedCompaniesWrapper";
@@ -21,6 +22,7 @@ export default function Home() {
         {panel==="savedCompanies" && <SavedCompaniesWrapper/>}
           {panel==="changePass" && <ChangePasswordForm/>}
           {panel==="EditProfile" && <EditProfile/>}
+          {panel==="ContactUniversity" && <ContactUniForm/>}
         </div>
       </div>
     </div>

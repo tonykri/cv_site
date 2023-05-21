@@ -1,5 +1,6 @@
 'use client'
 
+import axios from "axios";
 import { useState } from "react";
 
 
@@ -13,6 +14,19 @@ export default function ContactAdminForm(){
     async function handleSubmit(e: any) {
         e.preventDefault();
         setWrongCredentials(false);
+        axios.post(`http://localhost:8080/contact/admin`, {
+            "content": content
+        }, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data);
+            setViewSuccess(true);
+            setContent('');
+        }).catch(err => {
+            console.log(err);
+        });
 
     }
 

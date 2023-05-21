@@ -2,14 +2,17 @@
 import { useState } from "react";
 import { TbNorthStar } from 'react-icons/tb'
 import { usePathname } from 'next/navigation';
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function EditProfile() {
     const pathname = usePathname();
-    const BtnText = pathname==="/completeprofile" ? "Complete Registration" : "Update Info"
+    const BtnText = pathname === "/completeprofile" ? "Complete Registration" : "Update Info"
+    const router = useRouter()
 
     const [viewSuccess, setViewSuccess] = useState(false);
-    const [university, setUniversity] = useState("");
-    const [department, setDepartment] = useState("");
+    const [university, setUniversity] = useState("University of Piraeus");
+    const [department, setDepartment] = useState("Informatics");
     const [school, setSchool] = useState("");
     const [languages, setLanguages] = useState("");
     const [certifications, setCertifications] = useState("");
@@ -17,14 +20,43 @@ export default function EditProfile() {
     const [yearsExp, setYearsExp] = useState("0");
     const [workExp, setworkExp] = useState("");
     const [skills, setSkills] = useState("");
-    const [intrests, setIntrests] = useState("");
+    const [interests, setInterests] = useState("");
     const [volExp, setvolExp] = useState("");
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
     async function handleSubmit(e: any) {
         e.preventDefault();
+        axios.put('http://localhost:8080/update/student', {
+            "university": university,
+            "department": department,
+            "highSchool": school,
+            "languages": languages,
+            "certifications": certifications,
+            "awards": awards,
+            "yearsOfWorkExperience": 3,
+            "workExperience": workExp,
+            "skills": skills,
+            "interests": interests,
+            "volunteeringExperience": volExp
 
+        }, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data);
+            if (pathname === '/completeprofile') {
+                if (localStorage.getItem('role') === 'STUDENT')
+                    router.push('/student/home');
+                else
+                    router.push('/company/home');
+            }else
+                setViewSuccess(true);
+        }).catch(err => {
+            console.log(err);
+            console.log("gtxs");
+        });
     }
 
     return (
@@ -52,9 +84,6 @@ export default function EditProfile() {
                                         <div className="mb-1">University: <TbNorthStar color="red" /></div>
                                         <select id="university" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <option value="" selected onClick={(e) => setUniversity("University of Piraeus")}>University of Piraeus</option>
-                                            <option value="" onClick={(e) => setUniversity("University of Piraeus")}>University of Piraeus</option>
-                                            <option value="" onClick={(e) => setUniversity("University of Piraeus")}>University of Piraeus</option>
-                                            <option value="" onClick={(e) => setUniversity("University of Piraeus")}>University of Piraeus</option>
                                         </select>
                                     </label>
                                 </div>
@@ -63,14 +92,11 @@ export default function EditProfile() {
 
                                         <div className="mb-1">Department: <TbNorthStar color="red" /></div>
                                         <select id="university" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <option value="" selected onClick={(e) => setDepartment("University of Piraeus")}>Informatics</option>
-                                            <option value="" onClick={(e) => setDepartment("University of Piraeus")}>Informatics</option>
-                                            <option value="" onClick={(e) => setDepartment("University of Piraeus")}>Informatics</option>
-                                            <option value="" onClick={(e) => setDepartment("University of Piraeus")}>Informatics</option>
+                                            <option value="" selected onClick={(e) => setDepartment("Informatics")}>Informatics</option>
                                         </select>
                                     </label>
                                 </div>
-                               
+
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         High School:
@@ -97,7 +123,7 @@ export default function EditProfile() {
                                 </div>
                             </div>
                             <div className="mx-4">
-                                
+
                                 <div className="mb-6 mt-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Years of work experience:
@@ -120,7 +146,7 @@ export default function EditProfile() {
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Intrests:
-                                        <input type="text" id="intrests" className={cssUnit} value={intrests} onChange={(e) => setIntrests(e.target.value)} />
+                                        <input type="text" id="intrests" className={cssUnit} value={interests} onChange={(e) => setInterests(e.target.value)} />
                                     </label>
                                 </div>
                                 <div className="mb-6">

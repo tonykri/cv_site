@@ -5,13 +5,14 @@ import NavBarStudent from "./NavBarStudent"
 import StudentFilters from "./StudentFilters"
 
 
-export default function NavBarFiltersWrapper() {
+export default function NavBarFiltersWrapper(props:any) {
     const [showFilters, setShowFilters] = useState(true)
+
 
     return (
         <div>
             <NavBarStudent setShowFilters={setShowFilters} />
-            {showFilters && <StudentFilters setShowFilters={setShowFilters} />}
+            {showFilters && <StudentFilters searchAgain={props.searchAgain} setShowFilters={setShowFilters} setLanguages={props.setLanguages} setIndustry={props.setIndustry} setCompanySize={props.setCompanySize} setMaxYears={props.setMaxYears}/>}
         </div>
     )
 }

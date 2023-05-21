@@ -13,6 +13,11 @@ import ThemeBtn from "../ThemeBtn"
 export default function NavBarCompany(props: any) {
     const pathname = usePathname();
 
+    function handleLogout(){
+        localStorage.removeItem('token')
+        localStorage.removeItem('role')
+    }
+
     return (
         <div>
             <Navbar
@@ -37,9 +42,9 @@ export default function NavBarCompany(props: any) {
                     </div>
 
                     {pathname === '/company/home' ? <button type="button" onClick={() => props.setShowFilters(true)} className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Filters</button> : null}
-                    <div className="flex md:hidden">
+                    {/*<div className="flex md:hidden">
                         <ThemeBtn />
-                    </div>
+    </div>*/}
 
                     <div className="md:flex hidden">
                         <CompanySearchForm />
@@ -68,14 +73,14 @@ export default function NavBarCompany(props: any) {
                             <IoIosNotificationsOutline />
                         </Tooltip>
                     </Navbar.Link>
-                    <Navbar.Link className="mt-2 text-lg" href="/" onClick={() => console.log()}>
+                    <Navbar.Link className="mt-2 text-lg" href="/" onClick={() => handleLogout()}>
                         <Tooltip content="Logout">
                             <FiLogOut />
                         </Tooltip>
                     </Navbar.Link>
-                    <div className="mt-2 md:mt-0 md:flex hidden">
+                    {/*<div className="mt-2 md:mt-0 md:flex hidden">
                         <ThemeBtn />
-                    </div>
+</div>*/}
 
                 </Navbar.Collapse>
             </Navbar>
