@@ -1,40 +1,88 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DepartmentBtn from "./DepartmentBtn";
 import './NavBarUniversity.css'
+import axios from "axios";
 
 export default function EditProfile() {
     const [name, setName] = useState('')
     const [viewSuccess, setViewSuccess] = useState(false);
     const [viewSuccessAdmin, setViewSuccessAdmin] = useState(false);
-    const [departments, setDepartments] = useState(['depadsfsdrt', 'bdesdpart', 'deparsstc', 'ddepgfdgrart', 'depergarte', 'fdeergerpart', 'depvcartg', 'desdfparth', 'idsdfeepart', 'debpgbart', 'bdepnhgmart', 'depghgartc', 'ddrthepart', 'depanfgnfrte', 'fdnfgnfgntrepart', 'dertpahrtg', 'dertryparth', 'ideryrypart'])
+    const [departments, setDepartments] = useState([{
+        id: "",
+        department: ""
+    }])
     const [website, setWebsite] = useState("");
-    const [headquarters, setHeadquarters] = useState("");
     const [founded, setFounded] = useState("1960");
     const [about, setAbout] = useState("");
     const [email, setEmail] = useState("");
-    const [vat, setVat] = useState("");
+    const [search, setSearch] = useState(false);
+
+    function Refresh() {
+        setSearch(!search);
+    }
+
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
-    async function handleSubmit(e: any) {
+    function handleSubmitDepartment(e: any) {
         e.preventDefault();
+        axios.get(`http://localhost:8080/university/addDepartment/${name}`, {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        }).then(res => {
+            console.log(res.data);
+            Refresh()
+            setViewSuccess(true)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+    function handleSubmit(e: any) {
+        e.preventDefault();
+        axios.put(`http://localhost:8080/update/university`, {
+            founded: founded,
+            email: email,
+            website: website,
+            about: about
+        }, {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        }).then(res => {
+            console.log(res.data);
+            setViewSuccessAdmin(true);
+        }).catch(err => {
+            console.log(err)
+        })
 
     }
 
-    async function delDept(dept: string) {
+    useEffect(() => {
+        axios.get('http://localhost:8080/departments', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        }).then(res => {
+            console.log(res.data)
+            setDepartments(res.data)
+        }).catch(err => {
+            console.log(err)
+        });
+    }, [search])
 
-    }
 
     return (
         <div className="container mx-auto">
             <div className="flex overflow-x-scroll gap-4 mt-4">
-                {departments.map(dept => <DepartmentBtn key={dept} delDept={delDept} deptName={dept} />)}
+                {departments.map(dept => <DepartmentBtn Refresh={Refresh} key={dept.id} department={dept} />)}
             </div>
             <div className="w-full h-full flex align-middle justify-center">
                 <div className="mx-auto">
                     <div className="container mx-auto my-5 justify-center flex">
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmitDepartment}>
                             {viewSuccess && <div id="toast-success" className=" m-auto mt-5 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
                                 <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
                                     <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
@@ -74,24 +122,24 @@ export default function EditProfile() {
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     Founded:
                                     <div>{founded}</div>
-                                <input type="range" id="yearsOfExp" min={1960} max={2023} className={cssUnit} value={founded} onChange={(e) => setFounded(e.target.value)} />                                </label>
+                                    <input type="range" id="yearsOfExp" min={1960} max={2023} className={cssUnit} value={founded} onChange={(e) => setFounded(e.target.value)} />                                </label>
                             </div>
-                            <div className="mb-6">
+                            {<div className="mb-6">
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     Email:
-                                    <input type="email" id="email" placeholder="email@example.com" className={cssUnit} value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                                    <input type="email" id="email" placeholder="email@example.com" className={cssUnit} value={email} onChange={(e) => setEmail(e.target.value)} required />
                                 </label>
-                            </div>
+                            </div>}
                             <div className="mb-6">
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     Website:
-                                    <input type="text" id="website" placeholder="www.example.gr" className={cssUnit} value={website} onChange={(e) => setWebsite(e.target.value)} required/>
+                                    <input type="text" id="website" placeholder="www.example.gr" className={cssUnit} value={website} onChange={(e) => setWebsite(e.target.value)} required />
                                 </label>
                             </div>
                             <div className="mb-6">
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     About:
-                                    <textarea id="about" rows={8} className={cssUnit} value={about} onChange={(e) => setAbout(e.target.value)} required/>
+                                    <textarea id="about" rows={8} className={cssUnit} value={about} onChange={(e) => setAbout(e.target.value)} required />
                                 </label>
                             </div>
                             <div className="mb-6 flex justify-start">

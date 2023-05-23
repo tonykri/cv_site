@@ -1,9 +1,10 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TbNorthStar } from 'react-icons/tb'
 import { usePathname } from 'next/navigation';
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Select from "react-select";
 
 export default function EditProfile() {
     const pathname = usePathname();
@@ -11,8 +12,6 @@ export default function EditProfile() {
     const router = useRouter()
 
     const [viewSuccess, setViewSuccess] = useState(false);
-    const [university, setUniversity] = useState("University of Piraeus");
-    const [department, setDepartment] = useState("Informatics");
     const [school, setSchool] = useState("");
     const [languages, setLanguages] = useState("");
     const [certifications, setCertifications] = useState("");
@@ -22,14 +21,15 @@ export default function EditProfile() {
     const [skills, setSkills] = useState("");
     const [interests, setInterests] = useState("");
     const [volExp, setvolExp] = useState("");
+    const [searchDepartments, setSearchDepartments] = useState(false);
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
     async function handleSubmit(e: any) {
         e.preventDefault();
         axios.put('http://localhost:8080/update/student', {
-            "university": university,
-            "department": department,
+            "university": selectedUniversity,
+            "department": selectedDepartment,
             "highSchool": school,
             "languages": languages,
             "certifications": certifications,
@@ -51,13 +51,46 @@ export default function EditProfile() {
                     router.push('/student/home');
                 else
                     router.push('/company/home');
-            }else
+            } else
                 setViewSuccess(true);
         }).catch(err => {
             console.log(err);
             console.log("gtxs");
         });
     }
+
+    const [selectedUniversity, setSelectedUniversity] = useState("");
+    const [universities, setUniversities] = useState([{ value: "", label: "" }])
+    const setUniversity = (selected: any) => {
+        setSelectedUniversity(selected.value);
+        setSearchDepartments(!searchDepartments)
+    };
+    useEffect(() => {
+        axios.get(`http://localhost:8080/universities`,)
+        .then(res => {
+            let temp = []
+            for (const data of res.data)
+                temp.push({ value: data.name, label: data.name })
+            setUniversities(temp)
+        })
+    }, [])
+
+    const [selectedDepartment, setSelectedDepartment] = useState("");
+    const [departments, setDepartments] = useState([{ value: "", label: "" }])
+    const setDepartment = (selected: any) => {
+        setSelectedDepartment(selected.value);
+    };
+    useEffect(() => {
+        if (selectedUniversity === "")
+            return
+        axios.get(`http://localhost:8080/${selectedUniversity}/departments`,)
+        .then(res => {
+            let temp = []
+            for (const data of res.data)
+                temp.push({ value: data.department, label: data.department })
+            setDepartments(temp)
+        })
+    }, [searchDepartments])
 
     return (
         <div className="w-full h-full justify-center items-center flex">
@@ -82,18 +115,22 @@ export default function EditProfile() {
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
 
                                         <div className="mb-1">University: <TbNorthStar color="red" /></div>
-                                        <select id="university" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <option value="" selected onClick={(e) => setUniversity("University of Piraeus")}>University of Piraeus</option>
-                                        </select>
+                                        <Select
+                                            defaultValue={universities[0]}
+                                            onChange={setUniversity}
+                                            options={universities}
+                                        />
                                     </label>
                                 </div>
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
 
                                         <div className="mb-1">Department: <TbNorthStar color="red" /></div>
-                                        <select id="university" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <option value="" selected onClick={(e) => setDepartment("Informatics")}>Informatics</option>
-                                        </select>
+                                        <Select
+                                            defaultValue={departments[0]}
+                                            onChange={setDepartment}
+                                            options={departments}
+                                        />
                                     </label>
                                 </div>
 

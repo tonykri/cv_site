@@ -1,6 +1,8 @@
 'use client'
+import axios from "axios";
 import { Avatar, Button, Card, Modal, Sidebar } from "flowbite-react";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { GiHamburgerMenu } from 'react-icons/gi'
 import {HiOutlineExclamationCircle} from 'react-icons/hi'
@@ -9,6 +11,45 @@ import {HiOutlineExclamationCircle} from 'react-icons/hi'
 export default function UniversityProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
     const [showModal, setShowModal] = useState(false)
+
+    const [data, setData] = useState({
+        name: "test",
+        email: "test",
+        headquarters: "test",
+        vatnumber: "test"
+    })
+
+    const router = useRouter();
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/profile", {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data);
+            setData(res.data);
+        }).catch(err => {
+            console.log(err);
+            router.push('/');
+            alert("Error: Please try again");
+        });
+    }, [])
+
+    function DeleteAccount(){
+        axios.delete("http://localhost:8080/delete", {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data);
+            router.push('/');
+            alert("Account deleted successfully");
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
 
     return (
         <div className={showSidebar ? "" : "w-20"}>
@@ -28,20 +69,26 @@ export default function UniversityProfileSideBar(props: any) {
                                             <Avatar rounded={true} />
                                         </div>
                                         <h5 className="mb-1 text-lg font-medium text-gray-900 dark:text-white">
-                                            University
+                                            {data.name}
                                         </h5>
 
                                         <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
-                                            Website:
+                                            Headquarters:
                                         </span>
                                         <span className="text-sm text-gray-500 dark:text-gray-400">
-                                            www.example.com
+                                            {data.headquarters}
                                         </span>
                                         <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
                                             Email:
                                         </span>
                                         <span className="text-sm text-gray-500 dark:text-gray-400">
-                                            example@gmail.com
+                                            {data.email}
+                                        </span>
+                                        <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
+                                            VAT Number:
+                                        </span>
+                                        <span className="text-sm text-gray-500 dark:text-gray-400">
+                                            {data.vatnumber}
                                         </span>
                                         
                                     </div>
@@ -89,7 +136,7 @@ export default function UniversityProfileSideBar(props: any) {
                                                     <div className="flex justify-center gap-4">
                                                         <Button
                                                             color="failure"
-                                                            onClick={()=>setShowModal(false)}
+                                                            onClick={()=>DeleteAccount()}
                                                         >
                                                             Yes, I'm sure
                                                         </Button>
