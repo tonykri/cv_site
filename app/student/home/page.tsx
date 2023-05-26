@@ -37,7 +37,7 @@ export default function Home() {
 
   return (
     <div>
-      <NavBarFiltersWrapper setLanguages={setLanguages} setIndustry={setIndustry} setCompanySize={setCompanySize} setMaxYears={setMaxYears} searchAgain={searchAgain}/>
+      <NavBarFiltersWrapper setJobs={setJobs} setLanguages={setLanguages} setIndustry={setIndustry} setCompanySize={setCompanySize} setMaxYears={setMaxYears} searchAgain={searchAgain}/>
       <CompaniesWrapper jobs={jobs} />
     </div>
   )

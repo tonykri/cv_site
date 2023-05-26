@@ -12,6 +12,11 @@ export default function NavBarFiltersWrapper() {
     const [minYears, setMinYears] = useState("0")
     const [selectedLanguage, setSelectedLanguage] = useState("all");
     const [search, setSearch] = useState(false)
+    const [students, setStudents] = useState([{
+        id:"",
+        birthdate: ""
+    }])
+    const [searchName, setSearchName] = useState(false)
 
     function searchAgain(){
         setSearch(!search)
@@ -19,9 +24,9 @@ export default function NavBarFiltersWrapper() {
 
     return (
         <div>
-            <NavBarCompany setShowFilters={setShowFilters} />
+            <NavBarCompany setSearchName={setSearchName} setStudents={setStudents} setShowFilters={setShowFilters} />
             {showFilters && <CompanyFilters setShowFilters={setShowFilters} setCertificates={setCertificates} setMinYears={setMinYears} setSelectedLanguage={setSelectedLanguage} searchAgain={searchAgain}/>}
-            <StudentsWrapper search={search} certificates={certificates} minYears={minYears} selectedLanguage={selectedLanguage}/>
+            <StudentsWrapper students={students} searchName={searchName} search={search} certificates={certificates} minYears={minYears} selectedLanguage={selectedLanguage}/>
         </div>
     )
 }

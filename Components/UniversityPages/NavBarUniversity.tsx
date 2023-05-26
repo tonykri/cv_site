@@ -37,17 +37,17 @@ export default function NavBarUniversity(props: any) {
                         <ThemeBtn />
     </div>*/}
 
-                    <div className="md:flex hidden">
-                        <UniversitySearchForm />
-                    </div>
+                    {pathname === '/university/home' && <div className="md:flex hidden">
+                        <UniversitySearchForm setSearchName={props.setSearchName} setStudents={props.setStudents}/>
+                    </div>}
                     <Navbar.Toggle />
                 </div>
 
 
                 <Navbar.Collapse>
-                    <div className="visible md:hidden">
-                        <UniversitySearchForm />
-                    </div>
+                    {pathname === '/university/home' && <div className="visible md:hidden">
+                        <UniversitySearchForm setSearchName={props.setSearchName} setStudents={props.setStudents}/>
+                    </div>}
                     <Navbar.Link className="mt-2 text-lg" href="/university/profile">
                         <Tooltip content="View Profile">
                             <AiOutlineUser />

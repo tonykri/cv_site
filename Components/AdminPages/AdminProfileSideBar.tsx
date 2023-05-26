@@ -1,14 +1,53 @@
 'use client'
+import axios from "axios";
 import { Avatar, Button, Card, Modal, Sidebar } from "flowbite-react";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { GiHamburgerMenu } from 'react-icons/gi'
-import {HiOutlineExclamationCircle} from 'react-icons/hi'
+import { HiOutlineExclamationCircle } from 'react-icons/hi'
 
 
 export default function AdminProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
     const [showModal, setShowModal] = useState(false)
+    const [data, setData] = useState({
+        firstname: "",
+        lastname: "",
+        email: "",
+        birthdate: ""
+    })
+
+    const router = useRouter()
+
+    function DeleteAccount() {
+        axios.delete("http://localhost:8080/delete", {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data);
+            router.push('/');
+            alert("Account deleted successfully");
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/profile", {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data);
+            setData(res.data);
+        }).catch(err => {
+            console.log(err);
+            // router.push('/');
+            // alert("Error: Please try again");
+        });
+    }, [])
 
     return (
         <div className={showSidebar ? "" : "w-20"}>
@@ -28,20 +67,20 @@ export default function AdminProfileSideBar(props: any) {
                                             <Avatar rounded={true} />
                                         </div>
                                         <h5 className="mb-1 text-lg font-medium text-gray-900 dark:text-white">
-                                            Firstname Lastname
+                                            {data.firstname} {data.lastname}
                                         </h5>
 
                                         <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
                                             Email:
                                         </span>
                                         <span className="text-sm text-gray-500 dark:text-gray-400">
-                                            example@gmail.com
+                                            {data.email}
                                         </span>
                                         <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
                                             Birthdate:
                                         </span>
                                         <span className="text-sm text-gray-500 dark:text-gray-400">
-                                            10/10/2002
+                                            {data.birthdate.substring(0, 10)}
                                         </span>
                                     </div>
                                 </Card>
@@ -66,8 +105,8 @@ export default function AdminProfileSideBar(props: any) {
                                 </div>
                                 <div>
                                     <React.Fragment>
-                                        <Button onClick={()=>setShowModal(true)} className="w-full" color="failure">
-                                        Delete Account
+                                        <Button onClick={() => setShowModal(true)} className="w-full" color="failure">
+                                            Delete Account
                                         </Button>
                                         <Modal
                                             show={showModal}
@@ -83,13 +122,13 @@ export default function AdminProfileSideBar(props: any) {
                                                     <div className="flex justify-center gap-4">
                                                         <Button
                                                             color="failure"
-                                                            onClick={()=>setShowModal(false)}
+                                                            onClick={() => DeleteAccount()}
                                                         >
                                                             Yes, I'm sure
                                                         </Button>
                                                         <Button
                                                             color="gray"
-                                                            onClick={()=>setShowModal(false)}
+                                                            onClick={() => setShowModal(false)}
                                                         >
                                                             No, cancel
                                                         </Button>

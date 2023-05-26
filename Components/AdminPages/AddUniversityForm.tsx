@@ -1,5 +1,6 @@
 'use client'
 
+import axios from "axios";
 import { useState } from "react";
 
 
@@ -13,14 +14,43 @@ export default function AddUniversityForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [vat, setVat] = useState("");
+    const [VATNumber, setVATNumber] = useState("");
 
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
     async function handleSubmit(e: any) {
         e.preventDefault();
-
+        axios.post('http://localhost:8080/create/university', {
+            "universityName": name,
+            "headquarters": headquarters,
+            "founded": founded,
+            "website": website,
+            "email": email,
+            "VATNumber": VATNumber,
+            "password": password,
+            "confirmPassword": confirmPassword,
+            "about": about
+        },{
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        }).then(res => {
+            console.log(res.data)
+            setViewSuccess(true)
+            setAbout("")
+            setConfirmPassword("")
+            setEmail("")
+            setPassword("")
+            setVATNumber("")
+            setWebsite("")
+            setFounded("1960")
+            setHeadquarters("")
+            setName("")
+        }).catch(err => {
+            console.log(err);
+            alert(err.response.data)
+        });
     }
 
 
@@ -45,34 +75,34 @@ export default function AddUniversityForm() {
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 University Name:
-                                <input type="text" id="name" className={cssUnit} value={name} onChange={(e) => setName(e.target.value)} />
+                                <input type="text" id="name" className={cssUnit} value={name} onChange={(e) => setName(e.target.value)} required/>
                             </label>
                         </div>
 
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 VAT Number:
-                                <input type="number" id="VAT" className={cssUnit} value={vat} onChange={(e) => setVat(e.target.value)} />
+                                <input type="number" id="VAT" className={cssUnit} value={VATNumber} onChange={(e) => setVATNumber(e.target.value)} required/>
                             </label>
                         </div>
 
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Website:
-                                <input type="text" id="website" placeholder="www.example.gr" className={cssUnit} value={website} onChange={(e) => setWebsite(e.target.value)} />
+                                <input type="text" id="website" placeholder="www.example.gr" className={cssUnit} value={website} onChange={(e) => setWebsite(e.target.value)} required/>
                             </label>
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Headquarters:
-                                <input type="text" id="headquarters" className={cssUnit} value={headquarters} onChange={(e) => setHeadquarters(e.target.value)} />
+                                <input type="text" id="headquarters" className={cssUnit} value={headquarters} onChange={(e) => setHeadquarters(e.target.value)} required/>
                             </label>
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Founded:
                                 <div>{founded}</div>
-                                <input type="range" id="yearsOfExp" min={1960} max={2023} className={cssUnit} value={founded} onChange={(e) => setFounded(e.target.value)} />
+                                <input type="range" id="yearsOfExp" min={1960} max={2023} className={cssUnit} value={founded} onChange={(e) => setFounded(e.target.value)} required/>
                             </label>
                         </div>
 
@@ -81,19 +111,19 @@ export default function AddUniversityForm() {
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Email:
-                                <input type="email" id="email" placeholder="email@example.com" className={cssUnit} value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input type="email" id="email" placeholder="email@example.com" className={cssUnit} value={email} onChange={(e) => setEmail(e.target.value)} required/>
                             </label>
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Password:
-                                <input type="password" id="password" className={cssUnit} value={password} onChange={(e) => setPassword(e.target.value)} />
+                                <input type="password" id="password" className={cssUnit} value={password} onChange={(e) => setPassword(e.target.value)} required/>
                             </label>
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Confirm Password:
-                                <input type="password" id="confirmPassword" className={cssUnit} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                                <input type="password" id="confirmPassword" className={cssUnit} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
                             </label>
                         </div>
 
@@ -101,7 +131,7 @@ export default function AddUniversityForm() {
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 About:
-                                <textarea id="about" rows={8} className={cssUnit} value={about} onChange={(e) => setAbout(e.target.value)} />
+                                <textarea id="about" rows={8} className={cssUnit} value={about} onChange={(e) => setAbout(e.target.value)} required/>
                             </label>
                         </div>
 

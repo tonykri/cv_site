@@ -98,7 +98,7 @@ export default function UniversityProfileSideBar(props: any) {
                         <Sidebar.ItemGroup>
                             <div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("savedCompanies")}>
+                                    <Button className="w-full" onClick={() => props.setPanel("statistics")}>
                                         Statistics
                                     </Button>
                                 </div>

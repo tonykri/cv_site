@@ -36,17 +36,17 @@ export default function NavBarStudent(props: any) {
                         <ThemeBtn />
     </div>*/}
 
-                    <div className="md:flex hidden">
-                        <StudentSearchForm />
-                    </div>
+                    {pathname !== '/student/profile' && <div className="md:flex hidden">
+                        <StudentSearchForm setJobs={props.setJobs}/>
+                    </div>}
                     <Navbar.Toggle />
                 </div>
 
 
                 <Navbar.Collapse>
-                    <div className="visible md:hidden">
-                        <StudentSearchForm />
-                    </div>
+                    {pathname !== '/student/profile' && <div className="visible md:hidden">
+                        <StudentSearchForm setJobs={props.setJobs}/>
+                    </div>}
                     <Navbar.Link className="mt-2 text-lg" href="/student/profile">
                         <Tooltip content="View Profile">
                             <AiOutlineUser />

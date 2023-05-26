@@ -1,8 +1,23 @@
 'use client'
+import axios from "axios";
 import { Button, Card } from "flowbite-react";
 
 
-export default function NotificationCard() {
+export default function NotificationCard(props:any) {
+
+    function DeleteNotification(){
+        axios.get(`http://localhost:8080/notifications/deleteContactForm/${props.notification.applicationId}`, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        }).then(res => {
+            console.log(res.data);
+            props.setViewSuccess(true)
+            props.Refresh()
+        }).catch(err => {
+            console.log(err)
+        });
+    }
 
     return (
         <div>
@@ -10,15 +25,18 @@ export default function NotificationCard() {
                 <div className="mx-4">
                     <div className="flex justify-between">
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        Sent by: Corp Name
+                        Sent by: {props.notification.name}
                     </p>
-                    <Button>Complete</Button>
+                    <Button onClick={DeleteNotification}>Complete</Button>
                     </div>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        VAT Number: 123456789
+                        Email: {props.notification.email}
                     </p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        Content: text
+                        Role: {props.notification.role}
+                    </p>
+                    <p className="font-normal text-gray-700 dark:text-gray-400">
+                        Content: {props.notification.content}
                     </p>
                 </div>
             </Card>

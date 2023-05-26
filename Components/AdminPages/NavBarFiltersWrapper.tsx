@@ -9,27 +9,46 @@ import StudentsWrapper from "./StudentsWrapper"
 import UniversitiesWrapper from "./UniversitiesWrapper"
 import CompaniesWrapper from "./CompaniesWrapper"
 import CompanyFilters from "../CompanyPages/CompanyFilters"
-import UniversityFilters from "../UniversityPages/UniversityFilters"
-
 
 export default function NavBarFiltersWrapper() {
+
     const [showFilters, setShowFilters] = useState(true)
     const [showUniForm, setShowUniForm] = useState(false)
     const [user, setUser] = useState('Student')
+
+    const [certificates, setCertificates] = useState(false)
+    const [minYears, setMinYears] = useState("0")
+    const [selectedLanguage, setSelectedLanguage] = useState("all");
+    const [search, setSearch] = useState(false)
+
+    const [languages, setLanguages] = useState("all");
+    const [industry, setIndustry] = useState("all");
+    const [companySize, setCompanySize] = useState("all");
+    const [maxYears, setMaxYears] = useState("100");
+    const [data, setData] = useState([{
+        id:"",
+        birthdate: ""
+    }])
+    const [searchName, setSearchName] = useState(false)
+
+    function searchAgain() {
+        setSearch(!search)
+    }
+
+    
     return (
         <div>
-            <NavBarAdmin setShowFilters={setShowFilters} setUser={setUser}/>
-            {showFilters && user === 'Company' && <StudentFilters setShowFilters={setShowFilters} />}
-            {showFilters && user === 'Student' && <CompanyFilters setShowFilters={setShowFilters} />}
+            <NavBarAdmin setSearchName={setSearchName} setData={setData} setShowFilters={setShowFilters} setUser={setUser} />
+            {showFilters && user === 'Student' && <CompanyFilters setShowFilters={setShowFilters} setCertificates={setCertificates} setMinYears={setMinYears} setSelectedLanguage={setSelectedLanguage} searchAgain={searchAgain} />}
             <div className="flex justify-end mt-2 mr-3 mb-2">
-                <Button onClick={()=>setShowUniForm(!showUniForm)} color={showUniForm ? "failure":"gray"}>
-                    {showUniForm ? 'Close':'Add University'}
+                <Button onClick={() => setShowUniForm(!showUniForm)} color={showUniForm ? "failure" : "gray"}>
+                    {showUniForm ? 'Close' : 'Add University'}
                 </Button>
             </div>
-            {showUniForm && <AddUniversityForm/>}
-            {user === 'Student' && <StudentsWrapper/>}
-            {user === 'Company' && <CompaniesWrapper/>}
-            {user === 'University' && <UniversitiesWrapper/>}
+            {showUniForm && <AddUniversityForm />}
+            {user === 'Student' && <StudentsWrapper students={data} searchName={searchName} search={search} certificates={certificates} minYears={minYears} selectedLanguage={selectedLanguage} />}
+            {user === 'Company' && <CompaniesWrapper companies={data} searchName={searchName} search={search} languages={languages} industry={industry} companySize={companySize} maxYears={maxYears}/>}
+            {user === 'University' && <UniversitiesWrapper universities={data} searchName={searchName} search={search}/>}
         </div>
     )
 }

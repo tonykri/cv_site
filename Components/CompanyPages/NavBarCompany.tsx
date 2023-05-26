@@ -46,18 +46,18 @@ export default function NavBarCompany(props: any) {
                         <ThemeBtn />
     </div>*/}
 
-                    <div className="md:flex hidden">
-                        <CompanySearchForm />
-                    </div>
+                    {pathname === '/company/home' && <div className="md:flex hidden">
+                        <CompanySearchForm setSearchName={props.setSearchName} setStudents={props.setStudents}/>
+                    </div>}
                     <Navbar.Toggle />
                 </div>
 
 
                 <Navbar.Collapse>
                     
-                    <div className="visible md:hidden">
-                        <CompanySearchForm />
-                    </div>
+                    {pathname === '/company/home' && <div className="visible md:hidden">
+                        <CompanySearchForm setSearchName={props.setSearchName} setStudents={props.setStudents}/>
+                    </div>}
                     <div className="visible md:hidden list-none mt-2">
                         <Navbar.Link href="/company/create-job-position" onClick={() => console.log()}>
                                 Create job position

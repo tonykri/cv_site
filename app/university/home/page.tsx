@@ -7,15 +7,20 @@ import { useState } from "react";
 export default function Home() {
   const [department, setDepartment] = useState('all')
   const [search, setSearch] = useState(false)
+  const [students, setStudents] = useState([{
+    id: "",
+    birthdate: ""
+  }])
+  const [searchName, setSearchName] = useState(false)
 
-  function Refresh(){
+  function Refresh() {
     setSearch(!search)
   }
 
   return (
     <div>
-      <NavBarFiltersWrapper setDepartment={setDepartment} Refresh={Refresh}/>
-      <StudentsWrapper department={department} search={search}/>
+      <NavBarFiltersWrapper setSearchName={setSearchName} setStudents={setStudents} setDepartment={setDepartment} Refresh={Refresh} />
+      <StudentsWrapper students={students} searchName={searchName} department={department} search={search} />
     </div>
   )
 }

@@ -11,7 +11,7 @@ export default function NavBarFiltersWrapper(props:any) {
 
     return (
         <div>
-            <NavBarStudent setShowFilters={setShowFilters} />
+            <NavBarStudent setJobs={props.setJobs} setShowFilters={setShowFilters} />
             {showFilters && <StudentFilters searchAgain={props.searchAgain} setShowFilters={setShowFilters} setLanguages={props.setLanguages} setIndustry={props.setIndustry} setCompanySize={props.setCompanySize} setMaxYears={props.setMaxYears}/>}
         </div>
     )

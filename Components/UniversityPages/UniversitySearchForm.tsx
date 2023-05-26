@@ -1,12 +1,28 @@
 'use client'
 
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 
-export default function UniversitySearchForm() {
+export default function UniversitySearchForm(props:any) {
     const [input, setInput] = useState("")
+    const router = useRouter()
 
     function handleSubmit(e:any){
         e.preventDefault()
+        axios.get(`http://localhost:8080/search/students/${input}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data);
+            props.setStudents(res.data);
+            props.setSearchName(true)
+        }).catch(err => {
+            console.log(err);
+            router.push('/');
+            alert('Error: Please try again');
+        });
     }
 
     return (

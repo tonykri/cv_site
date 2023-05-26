@@ -10,7 +10,7 @@ export default function NavBarFiltersWrapper(props:any) {
 
     return (
         <div>
-            <NavBarUniversity setShowFilters={setShowFilters} />
+            <NavBarUniversity setSearchName={props.setSearchName} setStudents={props.setStudents} setShowFilters={setShowFilters} />
             {showFilters && <UniversityFilters setShowFilters={setShowFilters} setDepartment={props.setDepartment} Refresh={props.Refresh}/>}
         </div>
     )

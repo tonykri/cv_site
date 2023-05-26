@@ -1,6 +1,7 @@
 'use client';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function RegisterFormAdmin(props: any) {
     const [firstname, setFirstname] = useState("");
@@ -19,7 +20,25 @@ export default function RegisterFormAdmin(props: any) {
 
     async function handleSubmit(e: any) {
         e.preventDefault();
-        setWrongCredentials(true);
+        setWrongCredentials(false);
+        axios.post('http://localhost:8080/create/admin', {
+            "firstname": firstname,
+            "lastname": lastname,
+            "birthdate": birthdate,
+            "email": email,
+            "password": password,
+            "confirmPassword": confirmPassword
+        }, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data);
+           setViewSuccess(true);
+        }).catch(err => {
+            console.log(err);
+            setWrongCredentials(true);
+        });
 
     }
 

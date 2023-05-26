@@ -6,7 +6,7 @@ import { Button, Card } from "flowbite-react";
 export default function NotificationCard(props:any) {
 
     function DeleteNotification(){
-        axios.get(`http://localhost:8080/university/deleteContactForm/${props.student.applicationId}`, {
+        axios.get(`http://localhost:8080/notifications/deleteContactForm/${props.student.applicationId}`, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
