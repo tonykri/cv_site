@@ -52,6 +52,7 @@ export default function CompanyFilters(props: any) {
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Languages:
                         <Select
+                        className="dark:text-red-900"
                             defaultValue={languages[0]}
                             onChange={setLanguages}
                             options={languages}

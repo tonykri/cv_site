@@ -116,6 +116,7 @@ export default function EditProfile() {
 
                                         <div className="mb-1">University: <TbNorthStar color="red" /></div>
                                         <Select
+                                        className="dark:text-red-900"
                                             defaultValue={universities[0]}
                                             onChange={setUniversity}
                                             options={universities}
@@ -127,6 +128,7 @@ export default function EditProfile() {
 
                                         <div className="mb-1">Department: <TbNorthStar color="red" /></div>
                                         <Select
+                                        className="dark:text-red-900"
                                             defaultValue={departments[0]}
                                             onChange={setDepartment}
                                             options={departments}

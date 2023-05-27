@@ -95,6 +95,7 @@ export default function RegisterFormCompany(props: any) {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Indurstry:
                     <Select
+                    className="dark:text-red-900"
                         defaultValue={industries[0]}
                         onChange={setIndustry}
                         options={industries}

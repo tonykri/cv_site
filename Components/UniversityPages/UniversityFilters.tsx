@@ -55,6 +55,7 @@ export default function UniversityFilters(props: any) {
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Department:
                         <Select
+                        className="dark:text-red-900"
                             defaultValue={departments[0]}
                             onChange={setDepartment}
                             options={departments}

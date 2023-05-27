@@ -12,7 +12,7 @@ import ThemeBtn from "../ThemeBtn"
 export default function NavBarStudent(props: any) {
     const pathname = usePathname();
 
-    function handleLogout(){
+    function handleLogout() {
         localStorage.removeItem('token')
         localStorage.removeItem('role')
     }
@@ -32,12 +32,12 @@ export default function NavBarStudent(props: any) {
 
                 <div className="flex md:order-2">
                     {pathname !== '/student/profile' ? <button type="button" onClick={() => props.setShowFilters(true)} className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Filters</button> : null}
-                    {/*<div className="flex md:hidden">
+                    {<div className="flex md:hidden">
                         <ThemeBtn />
-    </div>*/}
+                    </div>}
 
                     {pathname !== '/student/profile' && <div className="md:flex hidden">
-                        <StudentSearchForm setJobs={props.setJobs}/>
+                        <StudentSearchForm setJobs={props.setJobs} />
                     </div>}
                     <Navbar.Toggle />
                 </div>
@@ -45,7 +45,7 @@ export default function NavBarStudent(props: any) {
 
                 <Navbar.Collapse>
                     {pathname !== '/student/profile' && <div className="visible md:hidden">
-                        <StudentSearchForm setJobs={props.setJobs}/>
+                        <StudentSearchForm setJobs={props.setJobs} />
                     </div>}
                     <Navbar.Link className="mt-2 text-lg" href="/student/profile">
                         <Tooltip content="View Profile">
@@ -57,9 +57,9 @@ export default function NavBarStudent(props: any) {
                             <FiLogOut />
                         </Tooltip>
                     </Navbar.Link>
-                    {/*<div className="mt-2 md:mt-0 md:flex hidden">
+                    {<div className="mt-2 md:mt-0 md:flex hidden">
                         <ThemeBtn />
-</div>*/}
+                    </div>}
 
                 </Navbar.Collapse>
             </Navbar>
