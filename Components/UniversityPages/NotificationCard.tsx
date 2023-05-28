@@ -39,7 +39,7 @@ export default function NotificationCard(props:any) {
                         Diploma Id: {props.student.diplomaId}
                     </p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        Diploma Id: {props.student.content}
+                        Content: {props.student.content}
                     </p>
                 </div>
             </Card>
