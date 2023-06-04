@@ -17,6 +17,12 @@ export default function Home() {
       <h1 className="text-4xl text-center">Complete your Profile</h1>
       {showStudent && <CompleteStudent/>}
       {!showStudent && <CompleteCompany/>}
+      {/* Footer */} 
+      <footer style={{ position: 'fixed', width: '100%', bottom: 0, textAlign: 'center' }}>
+        <div>
+          <p>© 2023 EduConnect. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   )
 }

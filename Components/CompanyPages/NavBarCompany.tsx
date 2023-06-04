@@ -27,7 +27,7 @@ export default function NavBarCompany(props: any) {
             >
                 <Navbar.Brand className="NavBarLogo" href="/company/home">
                     <span className=" self-center whitespace-nowrap text-xl font-semibold text-blue-600">
-                        Linkedin
+                        EduConnect
                     </span>
                 </Navbar.Brand>
 

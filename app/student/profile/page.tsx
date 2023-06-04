@@ -25,6 +25,12 @@ export default function Home() {
           {panel==="ContactUniversity" && <ContactUniForm/>}
         </div>
       </div>
+      {/* Footer */} 
+      <footer style={{ position: 'fixed', width: '100%', bottom: 0, textAlign: 'center' }}>
+        <div>
+          <p>© 2023 EduConnect. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   )
 }

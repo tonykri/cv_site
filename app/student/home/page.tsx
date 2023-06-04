@@ -39,6 +39,12 @@ export default function Home() {
     <div>
       <NavBarFiltersWrapper setJobs={setJobs} setLanguages={setLanguages} setIndustry={setIndustry} setCompanySize={setCompanySize} setMaxYears={setMaxYears} searchAgain={searchAgain}/>
       <CompaniesWrapper jobs={jobs} />
+      {/* Footer */} 
+      <footer style={{ position: 'fixed', width: '100%', bottom: 0, textAlign: 'center' }}>
+        <div>
+          <p>© 2023 EduConnect. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   )
 }

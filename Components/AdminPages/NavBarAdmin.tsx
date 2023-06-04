@@ -31,7 +31,7 @@ export default function NavBarAdmin(props: any) {
             >
                 <Navbar.Brand className="NavBarLogo" href="/admin/home">
                     <span className=" self-center whitespace-nowrap text-xl font-semibold text-blue-600">
-                        Linkedin
+                        EduConnect
                     </span>
                 </Navbar.Brand>
 
