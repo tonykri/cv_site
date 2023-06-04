@@ -52,6 +52,7 @@ export default function StudentProfileSideBar(props: any) {
         });
     }
 
+
     return (
         <div className={showSidebar ? "" : "w-20"}>
             <div className={showSidebar ? "h-screen flex" : "h-screen hidden"}>

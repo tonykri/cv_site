@@ -113,8 +113,9 @@ export default function EditProfile() {
                             <div className="mx-4">
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-
-                                        <div className="mb-1">University: <TbNorthStar color="red" /></div>
+                                    <span>
+                                    University: <span style={{ color: 'red' }}>*</span>
+                                    </span>
                                         <Select
                                         className="dark:text-red-900"
                                             defaultValue={universities[0]}
@@ -125,8 +126,9 @@ export default function EditProfile() {
                                 </div>
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-
-                                        <div className="mb-1">Department: <TbNorthStar color="red" /></div>
+                                    <span>
+                                    Department: <span style={{ color: 'red' }}>*</span>
+                                    </span>
                                         <Select
                                         className="dark:text-red-900"
                                             defaultValue={departments[0]}

@@ -93,7 +93,7 @@ export default function RegisterFormCompany(props: any) {
             </div>
             <div className="mb-6">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Indurstry:
+                    Industry:
                     <Select
                     className="dark:text-red-900"
                         defaultValue={industries[0]}

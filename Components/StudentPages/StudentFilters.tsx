@@ -94,7 +94,7 @@ export default function StudentFilters(props: any) {
                         <input type="range" id="gradB" max={40} min={0} className={cssUnit} value={maxYears} onChange={(e) => setMaxYears(e.target.value)} />
                     </label>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Indurstry:
+                        Industry:
                         <Select
                             className="dark:text-red-900"
                             defaultValue={industries[0]}
