@@ -30,8 +30,9 @@ export default function NavBarAdmin(props: any) {
                 className="barsBG"
             >
                 <Navbar.Brand className="NavBarLogo" href="/admin/home">
+                    <img src={'/EduConnectLogoSmall.ico'} alt={"logo"} width={40} height={40}/>
                     <span className=" self-center whitespace-nowrap text-xl font-semibold text-blue-600">
-                        EduConnect
+                        Connect
                     </span>
                 </Navbar.Brand>
 
