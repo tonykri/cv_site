@@ -8,6 +8,12 @@ export default function UniversitiesWrapper(props: any) {
   const [universities, setUniversities] = useState([{
     id: ""
   }])
+  const [refreshAfterDelete, setRefreshAfterDelete] = useState(true)
+
+  function Refresh(){
+    setRefreshAfterDelete(!refreshAfterDelete)
+  }
+  
   useEffect(() => {
     axios.get(`http://localhost:8080/admin/universities`, {
       headers: {
@@ -21,11 +27,11 @@ export default function UniversitiesWrapper(props: any) {
       router.push('/');
       alert('Error: Please try again');
     });
-  }, [props.search])
+  }, [props.search, refreshAfterDelete])
   return (
     <div className="container mx-auto my-5">
-      {props.searchName && props.universities.map((university: { id: any; }) => (<UniversityCard key={university.id} university={university} />))}
-      {!props.searchName && universities.map(university => (<UniversityCard key={university.id} university={university} />))}
+      {props.searchName && props.universities.map((university: { id: any; }) => (<UniversityCard key={university.id} university={university} Refresh={Refresh}/>))}
+      {!props.searchName && universities.map(university => (<UniversityCard key={university.id} university={university} Refresh={Refresh}/>))}
     </div>
   )
 }

@@ -1,16 +1,14 @@
 'use client'
 import axios from "axios";
-import { Avatar, Button, Card, Modal, Sidebar } from "flowbite-react";
+import { Avatar, Button, Card, Sidebar } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { GiHamburgerMenu } from 'react-icons/gi'
-import {HiOutlineExclamationCircle} from 'react-icons/hi'
 
 
 export default function UniversityProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
-    const [showModal, setShowModal] = useState(false)
 
     const [data, setData] = useState({
         name: "test",
@@ -35,20 +33,6 @@ export default function UniversityProfileSideBar(props: any) {
             alert("Error: Please try again");
         });
     }, [])
-
-    function DeleteAccount(){
-        axios.delete("http://localhost:8080/delete", {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }).then(res => {
-            console.log(res.data);
-            router.push('/');
-            alert("Account deleted successfully");
-        }).catch(err => {
-            console.log(err);
-        });
-    }
 
 
     return (
@@ -116,41 +100,6 @@ export default function UniversityProfileSideBar(props: any) {
                                     <Button className="w-full" onClick={() => props.setPanel("ContactAdmin")}>
                                         Contact Admin
                                     </Button>
-                                </div>
-                                <div>
-                                    <React.Fragment>
-                                        <Button onClick={()=>setShowModal(true)} className="w-full" color="failure">
-                                        Delete Account
-                                        </Button>
-                                        <Modal
-                                            show={showModal}
-                                            size="md"
-                                            popup={true}
-                                        >
-                                            <Modal.Body>
-                                                <div className="text-center pt-4">
-                                                    <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-                                                    <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                                                        Are you sure you want to delete your account?
-                                                    </h3>
-                                                    <div className="flex justify-center gap-4">
-                                                        <Button
-                                                            color="failure"
-                                                            onClick={()=>DeleteAccount()}
-                                                        >
-                                                            Yes, I'm sure
-                                                        </Button>
-                                                        <Button
-                                                            color="gray"
-                                                            onClick={()=>setShowModal(false)}
-                                                        >
-                                                            No, cancel
-                                                        </Button>
-                                                    </div>
-                                                </div>
-                                            </Modal.Body>
-                                        </Modal>
-                                    </React.Fragment>
                                 </div>
 
                             </div>
