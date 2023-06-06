@@ -29,7 +29,7 @@ export default function StudentCard(props: any) {
             "languages": languages
         },{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             console.log(res.data)
