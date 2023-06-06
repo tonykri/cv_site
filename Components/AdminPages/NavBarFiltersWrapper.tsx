@@ -12,7 +12,7 @@ import CompanyFilters from "../CompanyPages/CompanyFilters"
 
 export default function NavBarFiltersWrapper() {
 
-    const [showFilters, setShowFilters] = useState(true)
+    const [showFilters, setShowFilters] = useState(false)
     const [showUniForm, setShowUniForm] = useState(false)
     const [user, setUser] = useState('Student')
 
