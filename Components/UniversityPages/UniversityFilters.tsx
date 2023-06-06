@@ -41,11 +41,7 @@ export default function UniversityFilters(props: any) {
                 rounded={true}
                 className="mt-2"
             >
-                <Navbar.Brand className="CloseFiltersBtn">
-                    <div>
-                        <VscChromeClose onClick={() => props.setShowFilters(false)} />
-                    </div>
-                </Navbar.Brand>
+
                 <div className="flex">
                     <Navbar.Toggle />
                 </div>
