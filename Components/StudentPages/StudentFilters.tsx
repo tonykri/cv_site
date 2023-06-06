@@ -25,9 +25,9 @@ export default function StudentFilters(props: any) {
 
     const languages = [
         { value: "all", label: "All" },
-        { value: "english", label: "English" },
-        { value: "greek", label: "Greek" },
-        { value: "french", label: "French" },
+        { value: "English", label: "English" },
+        { value: "Greek", label: "Greek" },
+        { value: "French", label: "French" },
     ];
     const setLanguages = (selected: any) => {
         setSelectedLanguage(selected.value);
