@@ -47,10 +47,7 @@ export default function EditProfile() {
         }).then(res => {
             console.log(res.data);
             if (pathname === '/completeprofile') {
-                if (localStorage.getItem('role') === 'STUDENT')
-                    router.push('/student/home');
-                else
-                    router.push('/company/home');
+                router.push('/student/home');
             } else
                 setViewSuccess(true);
         }).catch(err => {
