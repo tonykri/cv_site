@@ -8,7 +8,7 @@ export default function NotificationCard(props:any) {
     function DeleteNotification(){
         axios.get(`http://localhost:8080/notifications/deleteContactForm/${props.student.applicationId}`, {
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             console.log(res.data);

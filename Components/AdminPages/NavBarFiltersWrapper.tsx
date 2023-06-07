@@ -12,18 +12,18 @@ import CompanyFilters from "../CompanyPages/CompanyFilters"
 
 export default function NavBarFiltersWrapper() {
 
-    const [showFilters, setShowFilters] = useState(true)
+    const [showFilters, setShowFilters] = useState(false)
     const [showUniForm, setShowUniForm] = useState(false)
     const [user, setUser] = useState('Student')
 
     const [certificates, setCertificates] = useState(false)
     const [minYears, setMinYears] = useState("0")
-    const [selectedLanguage, setSelectedLanguage] = useState("all");
+    const [selectedLanguage, setSelectedLanguage] = useState("All");
     const [search, setSearch] = useState(false)
 
-    const [languages, setLanguages] = useState("all");
-    const [industry, setIndustry] = useState("all");
-    const [companySize, setCompanySize] = useState("all");
+    const [languages, setLanguages] = useState("All");
+    const [industry, setIndustry] = useState("All");
+    const [companySize, setCompanySize] = useState("All");
     const [maxYears, setMaxYears] = useState("100");
     const [data, setData] = useState([{
         id:"",

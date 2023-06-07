@@ -6,8 +6,7 @@ import StudentFilters from "./StudentFilters"
 
 
 export default function NavBarFiltersWrapper(props:any) {
-    const [showFilters, setShowFilters] = useState(true)
-
+    const [showFilters, setShowFilters] = useState(false)
 
     return (
         <div>

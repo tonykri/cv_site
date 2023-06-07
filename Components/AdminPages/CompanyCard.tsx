@@ -1,6 +1,6 @@
 'use client'
 import axios from "axios";
-import { Button, Card, Modal, Tooltip } from "flowbite-react";
+import { Button, Card, Dropdown, Modal, Tooltip } from "flowbite-react";
 import React from "react";
 import { useState } from "react";
 import { AiFillEdit, AiFillSave } from "react-icons/ai";
@@ -25,9 +25,9 @@ export default function CompanyCard(props: any) {
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
     const sizes = [
-        { value: "SMALL", label: "SMALL" },
-        { value: "MEDIUM", label: "MEDIUM" },
-        { value: "LARGE", label: "LARGE" }
+        { value: "Small", label: "Small" },
+        { value: "Medium", label: "Medium" },
+        { value: "Large", label: "Large" }
     ]
     const setSize = (selected: any) => {
         setSelectedSize(selected.value);
@@ -74,7 +74,7 @@ export default function CompanyCard(props: any) {
             "industry": industry
         }, {
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             console.log(res.data)
@@ -213,22 +213,31 @@ export default function CompanyCard(props: any) {
                     {edit ?
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Size:
-                            <Select
-                                defaultValue={sizes[0]}
-                                onChange={setSize}
-                                options={sizes}
-                            />                        </label>
+                            <Dropdown
+                                label={size}
+                                dismissOnClick={true}
+                                color={'gray'}
+                            >
+                                {sizes.map((size) => (<Dropdown.Item onClick={() => setSize(size)}>
+                                    {size.label}
+                                </Dropdown.Item>))}
+                            </Dropdown>
+                        </label>
                         : <p className="font-normal text-gray-700 dark:text-gray-400">
                             Size: {size}
                         </p>}
                     {edit ?
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Industry:
-                            <Select
-                                defaultValue={industries[0]}
-                                onChange={setIndustry}
-                                options={industries}
-                            />
+                            <Dropdown
+                                label={industry}
+                                dismissOnClick={true}
+                                color={'gray'}
+                            >
+                                {industries.map((industry) => (<Dropdown.Item onClick={() => setIndustry(industry)}>
+                                    {industry.label}
+                                </Dropdown.Item>))}
+                            </Dropdown>
                         </label>
                         : <p className="font-normal text-gray-700 dark:text-gray-400">
                             Industry: {industry}

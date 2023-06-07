@@ -5,7 +5,7 @@ import { useState } from "react";
 
 
 export default function Home() {
-  const [department, setDepartment] = useState('all')
+  const [department, setDepartment] = useState('All')
   const [search, setSearch] = useState(false)
   const [students, setStudents] = useState([{
     id: "",

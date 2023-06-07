@@ -17,7 +17,7 @@ export default function StudentCard(props:any) {
     function handleUpdate() {
         axios.get(`http://localhost:8080/university/editStudent/${props.student.id}/${diplomaId}`,{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res=>{
             console.log(res);
