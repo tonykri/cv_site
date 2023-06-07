@@ -15,7 +15,7 @@ export default function UniversityFilters(props: any) {
     useEffect(()=>{
         axios.get(`http://localhost:8080/departments`,{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res=>{
             let temp = [{ value: "all", label: "All" }]
