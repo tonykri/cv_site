@@ -23,7 +23,7 @@ export default function NavBarFiltersWrapper() {
 
     const [languages, setLanguages] = useState("All");
     const [industry, setIndustry] = useState("All");
-    const [companySize, setCompanySize] = useState("all");
+    const [companySize, setCompanySize] = useState("All");
     const [maxYears, setMaxYears] = useState("100");
     const [data, setData] = useState([{
         id:"",

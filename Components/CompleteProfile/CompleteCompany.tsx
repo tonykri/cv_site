@@ -13,7 +13,7 @@ export default function CompleteCompany(){
     const [headquarters, setHeadquarters] = useState("");
     const [founded, setFounded] = useState("1960");
     const [about, setAbout] = useState("");
-    const [size, setSize] = useState("SMALL");
+    const [size, setSize] = useState("Small");
 
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
@@ -91,9 +91,9 @@ export default function CompleteCompany(){
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Employees:
                                         <div className="mt-1 flex gap-4">
-                                            <Button size='sm' color={size==='SMALL'?'success':'gray'} pill={true} onClick={()=>setSize('SMALL')}>0-50</Button>
-                                            <Button size='sm' color={size==='MEDIUM'?'success':'gray'} pill={true} onClick={()=>setSize('MEDIUM')}>51-200</Button>
-                                            <Button size='sm' color={size==='LARGE'?'success':'gray'} pill={true} onClick={()=>setSize('LARGE')}>201+</Button>
+                                            <Button size='sm' color={size==='SMALL'?'success':'gray'} pill={true} onClick={()=>setSize('Small')}>0-50</Button>
+                                            <Button size='sm' color={size==='MEDIUM'?'success':'gray'} pill={true} onClick={()=>setSize('Medium')}>51-200</Button>
+                                            <Button size='sm' color={size==='LARGE'?'success':'gray'} pill={true} onClick={()=>setSize('Large')}>201+</Button>
                                         </div>
                                     </label>
                                 </div>
