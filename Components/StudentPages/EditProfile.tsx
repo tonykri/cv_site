@@ -165,7 +165,7 @@ export default function EditProfile() {
                             </div>
                             <div className="mx-4">
 
-                                <div className="mb-6 mt-6">
+                                <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Years of work experience:
                                         <div>{yearsExp}</div>

@@ -6,7 +6,8 @@ export default function Home() {
     <div>
       <NavBarFiltersWrapper/>
       {/* Footer */} 
-      <footer style={{ position: 'fixed', width: '100%', bottom: 0, textAlign: 'center' }}>
+      {/* Footer */} 
+      <footer className="text-center p-2 dark:text-white">
         <div>
           <p>© 2023 EduConnect. All rights reserved.</p>
         </div>

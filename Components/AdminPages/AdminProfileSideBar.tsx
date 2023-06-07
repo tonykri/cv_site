@@ -8,6 +8,14 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 
 export default function AdminProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
+
+    const [activePanel, setActivePanel] = useState("");
+
+    const handlePanelChange = (panel: any) => { 
+    setActivePanel(panel);
+    props.setPanel(panel);
+    };
+
     const [data, setData] = useState({
         firstname: "",
         lastname: "",
@@ -70,17 +78,17 @@ export default function AdminProfileSideBar(props: any) {
                         <Sidebar.ItemGroup>
                             <div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("createAdmin")}>
+                                    <Button color={activePanel === "createAdmin" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("createAdmin")}>
                                         Create Admin
                                     </Button>
                                 </div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("EditProfile")}>
+                                    <Button color={activePanel === "EditProfile" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("EditProfile")}>
                                         Edit Profile
                                     </Button>
                                 </div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("changePass")}>
+                                    <Button color={activePanel === "changePass" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("changePass")}>
                                         Change Password
                                     </Button>
                                 </div>

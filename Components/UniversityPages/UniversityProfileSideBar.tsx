@@ -10,6 +10,13 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 export default function UniversityProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
 
+    const [activePanel, setActivePanel] = useState("");
+
+    const handlePanelChange = (panel: any) => { 
+    setActivePanel(panel);
+    props.setPanel(panel);
+    };
+
     const [data, setData] = useState({
         name: "test",
         email: "test",
@@ -55,7 +62,6 @@ export default function UniversityProfileSideBar(props: any) {
                                         <h5 className="mb-1 text-lg font-medium text-gray-900 dark:text-white">
                                             {data.name}
                                         </h5>
-
                                         <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
                                             Headquarters:
                                         </span>
@@ -82,22 +88,22 @@ export default function UniversityProfileSideBar(props: any) {
                         <Sidebar.ItemGroup>
                             <div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("statistics")}>
+                                    <Button color={activePanel === "statistics" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("statistics")}>
                                         Statistics
                                     </Button>
                                 </div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("EditProfile")}>
+                                    <Button color={activePanel === "EditProfile" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("EditProfile")}>
                                         Edit Profile
                                     </Button>
                                 </div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("changePass")}>
+                                    <Button color={activePanel === "changePass" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("changePass")}>
                                         Change Password
                                     </Button>
                                 </div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("ContactAdmin")}>
+                                    <Button color={activePanel === "ContactAdmin" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("ContactAdmin")}>
                                         Contact Admin
                                     </Button>
                                 </div>

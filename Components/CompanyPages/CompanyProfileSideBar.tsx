@@ -11,6 +11,13 @@ import { useRouter } from "next/navigation";
 export default function CompanyProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
     const [showModal, setShowModal] = useState(false)
+
+    const [activePanel, setActivePanel] = useState("");
+
+    const handlePanelChange = (panel: any) => { 
+    setActivePanel(panel);
+    props.setPanel(panel);
+    };
     
     const [data, setData] = useState({
         name: "test",
@@ -99,22 +106,22 @@ export default function CompanyProfileSideBar(props: any) {
                         <Sidebar.ItemGroup>
                             <div>
                             <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("SavedStudents")}>
+                                    <Button color={activePanel === "SavedStudents" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("SavedStudents")}>
                                         Saved Students
                                     </Button>
                                 </div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("EditProfile")}>
+                                    <Button color={activePanel === "EditProfile" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("EditProfile")}>
                                         Edit Profile
                                     </Button>
                                 </div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("changePass")}>
+                                    <Button color={activePanel === "changePass" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("changePass")}>
                                         Change Password
                                     </Button>
                                 </div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("ContactAdmin")}>
+                                    <Button color={activePanel === "ContactAdmin" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("ContactAdmin")}>
                                         Contact Admin
                                     </Button>
                                 </div>

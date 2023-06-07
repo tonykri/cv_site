@@ -22,7 +22,7 @@ export default function Home() {
       <NavBarFiltersWrapper setSearchName={setSearchName} setStudents={setStudents} setDepartment={setDepartment} Refresh={Refresh} />
       <StudentsWrapper students={students} searchName={searchName} department={department} search={search} />
       {/* Footer */} 
-      <footer style={{ position: 'fixed', width: '100%', bottom: 0, textAlign: 'center' }}>
+      <footer className="text-center p-2 dark:text-white">
         <div>
           <p>© 2023 EduConnect. All rights reserved.</p>
         </div>

@@ -9,8 +9,9 @@ export default function LogoInfoSide() {
                         <div>
                         Welcome to
                         </div>
-                        <div className='flex'>
-                        <Image src={'/EduConnectLogoSmall.ico'} alt={"logo"} width={50} height={50}/><span className="text-blue-600 mt-1 text-2xl"> Connect</span>
+                        <div>
+                            <Image src={'/EduConnectLogoSmall.ico'} alt={"logo"} width={50} height={50}/><span className="text-blue-600 mt-1 text-2xl"> Connect</span>
+                             {/* localStorage.getItem('theme') === 'dark' ? <Image src="/EduConnect_DarkTheme.png" alt={"logo"} width={200} height={200}/> : <Image src="/EduConnect_LightTheme.png" alt={"logo"} width={200} height={200}/> */}
                         </div>
                     </div>
                 </div>

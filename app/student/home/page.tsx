@@ -36,15 +36,17 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <NavBarFiltersWrapper setJobs={setJobs} setLanguages={setLanguages} setIndustry={setIndustry} setCompanySize={setCompanySize} setMaxYears={setMaxYears} searchAgain={searchAgain}/>
       <CompaniesWrapper jobs={jobs} />
+      <div className="mt-auto">
       {/* Footer */} 
-      <footer style={{ position: 'fixed', width: '100%', bottom: 0, textAlign: 'center' }}>
+      <footer className="text-center p-2 dark:text-white">
         <div>
           <p>© 2023 EduConnect. All rights reserved.</p>
         </div>
       </footer>
+      </div>
     </div>
   )
 }

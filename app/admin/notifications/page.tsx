@@ -4,11 +4,12 @@ import NotificationsWrapper from "@/Components/AdminPages/NotificationsWrapper";
 
 export default function Home() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <NavBarAdmin/>
       <NotificationsWrapper/>
+      <div className="flex-1"></div>
       {/* Footer */} 
-      <footer style={{ position: 'fixed', width: '100%', bottom: 0, textAlign: 'center' }}>
+      <footer className="text-center p-2 dark:text-white">
         <div>
           <p>© 2023 EduConnect. All rights reserved.</p>
         </div>
