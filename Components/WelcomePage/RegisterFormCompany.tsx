@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Select from "react-select";
+import { Dropdown } from "flowbite-react";
 
 export default function RegisterFormCompany(props: any) {
     const [companyName, setCompanyName] = useState("");
@@ -94,12 +95,15 @@ export default function RegisterFormCompany(props: any) {
             <div className="mb-6">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Industry:
-                    <Select
-                    className="dark:text-red-900"
-                        defaultValue={industries[0]}
-                        onChange={setIndustry}
-                        options={industries}
-                    />
+                    <Dropdown
+                        label={selectedIndustry}
+                        dismissOnClick={true}
+                        color={'gray'}
+                    >
+                        {industries.map((industry) => (<Dropdown.Item onClick={() => setIndustry(industry)}>
+                                {industry.label}
+                        </Dropdown.Item>))}
+                    </Dropdown>
                 </label>
             </div>
             <div className="mb-6">
