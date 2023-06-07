@@ -30,7 +30,7 @@ export default function StudentProfileSideBar(props: any) {
             }
         }).then(res => {
             console.log(res.data);
-            res.data.birthdate = res.data.birthdate.substring(0,10);
+            res.data.birthdate = res.data.birthdate.substring(0,10); // remove time from date
             setData(res.data);
         }).catch(err => {
             console.log(err);
