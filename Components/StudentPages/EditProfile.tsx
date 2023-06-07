@@ -47,10 +47,7 @@ export default function EditProfile() {
         }).then(res => {
             console.log(res.data);
             if (pathname === '/completeprofile') {
-                if (localStorage.getItem('role') === 'STUDENT')
-                    router.push('/student/home');
-                else
-                    router.push('/company/home');
+                router.push('/student/home');
             } else
                 setViewSuccess(true);
         }).catch(err => {
@@ -92,6 +89,31 @@ export default function EditProfile() {
         })
     }, [searchDepartments])
 
+    useEffect(() => {
+        if( pathname !== "/completeprofile") {
+            axios.get("http://localhost:8080/profile/moredata", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` 
+                }
+            }).then(res => {
+                console.log(res.data);
+                setSelectedUniversity(res.data.university);
+                setSelectedDepartment(res.data.department);
+                setSchool(res.data.highSchool);
+                setLanguages(res.data.languages);
+                setCertifications(res.data.certifications);
+                setAwards(res.data.awards);
+                setworkExp(res.data.workExperience);
+                setYearsExp(res.data.yearsOfWorkExperience);
+                setSkills(res.data.skills);
+                setInterests(res.data.interests);
+                setvolExp(res.data.volunteeringExperience);
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+    }, [])
+
     return (
         <div className="w-full h-full justify-center items-center flex">
             <div className="overflow-y-auto h-screen mt-4 justify-center items-center md:flex">
@@ -113,7 +135,7 @@ export default function EditProfile() {
                             <div className="mx-4">
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    <span>
+                                    {pathname === "/completeprofile" ? <><span>
                                     University: <span style={{ color: 'red' }}>*</span>
                                     </span>
                                         <Select
@@ -121,12 +143,15 @@ export default function EditProfile() {
                                             defaultValue={universities[0]}
                                             onChange={setUniversity}
                                             options={universities}
-                                        />
+                                        /> </>:  
+                                        <>University:
+                                        <input type="text" id="university" className={cssUnit} value={selectedUniversity} onChange={(e) => setSchool(e.target.value)}  disabled /></>
+                                        }
                                     </label>
                                 </div>
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    <span>
+                                    {pathname === "/completeprofile" ? <><span>
                                     Department: <span style={{ color: 'red' }}>*</span>
                                     </span>
                                         <Select
@@ -134,7 +159,10 @@ export default function EditProfile() {
                                             defaultValue={departments[0]}
                                             onChange={setDepartment}
                                             options={departments}
-                                        />
+                                        /></>:
+                                        <>Department:
+                                        <input type="text" id="department" className={cssUnit} value={selectedDepartment} onChange={(e) => setSchool(e.target.value)} disabled /></>
+                                        }
                                     </label>
                                 </div>
 

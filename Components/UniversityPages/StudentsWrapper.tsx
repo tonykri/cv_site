@@ -11,7 +11,7 @@ export default function StudentsWrapper(props: any) {
     useEffect(() => {
         axios.get(`http://localhost:8080/search/students/university?department=${props.department}`, {
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             console.log(res.data);

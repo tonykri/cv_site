@@ -3,13 +3,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Select from "react-select";
+import { Dropdown } from "flowbite-react";
 
 export default function RegisterFormCompany(props: any) {
     const [companyName, setCompanyName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [VAT, setVAT] = useState("");
+    const [VATNumber, setVATNumber] = useState("0");
     const [selectedIndustry, setSelectedIndustry] = useState("Technology");
     const [viewSuccess, setViewSuccess] = useState(false);
 
@@ -24,7 +25,7 @@ export default function RegisterFormCompany(props: any) {
         setWrongCredentials(false);
         axios.post('http://localhost:8080/register/company', {
             "companyName": companyName,
-            "VATNumber": VAT,
+            "VATNumber": VATNumber,
             "industry": selectedIndustry,
             "email": email,
             "password": password,
@@ -88,18 +89,21 @@ export default function RegisterFormCompany(props: any) {
             <div className="mb-6">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     VAT Number:
-                    <input type="number" id="VAT" className={cssUnit} value={VAT} onChange={(e) => setVAT(e.target.value)} required />
+                    <input type="number" id="VATNumber" className={cssUnit} value={VATNumber} onChange={(e) => setVATNumber(e.target.value)} required />
                 </label>
             </div>
             <div className="mb-6">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Industry:
-                    <Select
-                    className="dark:text-red-900"
-                        defaultValue={industries[0]}
-                        onChange={setIndustry}
-                        options={industries}
-                    />
+                    <Dropdown
+                        label={selectedIndustry}
+                        dismissOnClick={true}
+                        color={'gray'}
+                    >
+                        {industries.map((industry) => (<Dropdown.Item onClick={() => setIndustry(industry)}>
+                                {industry.label}
+                        </Dropdown.Item>))}
+                    </Dropdown>
                 </label>
             </div>
             <div className="mb-6">

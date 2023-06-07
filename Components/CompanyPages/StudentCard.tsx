@@ -11,7 +11,7 @@ export default function StudentCard(props: any) {
     function saveStudent(){
         axios.get(`http://localhost:8080/save/company/${props.student.id}`,{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             console.log(res);
@@ -30,12 +30,12 @@ export default function StudentCard(props: any) {
                 <div className="text-2xl">
                 <Tooltip content={props.saved ? "Remove" : "Save"}>
                             <AiFillStar color={saved ? "yellow" : "gray"} onClick={() => saveStudent()} />
-                        </Tooltip>
+                </Tooltip>
                 </div>
                 </div>
 
                 <div className="mx-4">
-                <p className="font-normal text-gray-700 dark:text-gray-400">
+                    <p className="font-normal text-gray-700 dark:text-gray-400">
                         University: {props.student.university}
                     </p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">

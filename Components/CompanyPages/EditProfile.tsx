@@ -1,47 +1,68 @@
 'use client'
-
+import { useEffect, useState } from "react";
+import { TbNorthStar } from 'react-icons/tb'
+import { usePathname } from 'next/navigation';
 import axios from "axios";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Button } from "flowbite-react";
+import Select from "react-select";
 
-
-export default function CreateJobForm() {
-    const [viewSuccess, setViewSuccess] = useState(false);
-    const [jobPos, setJobPos] = useState("");
-    const [skills, setSkills] = useState("");
-    const [about, setAbout] = useState("");
-    const [languages, setLanguages] = useState("");
-    const [exp, setExp] = useState("0");
-
+export default function EditProfile() {
+    const pathname = usePathname();
+    const BtnText = pathname == "/company/editprofile" ? "Complete Registration" : "Update Info";
     const router = useRouter()
 
+    const [viewSuccess, setViewSuccess] = useState(false);
+    const [website, setWebsite] = useState("");
+    const [headquarters, setHeadquarters] = useState("");
+    const [founded, setFounded] = useState(1960);
+    const [companySize, setCompanySize] = useState("Small");
+    const [about, setAbout] = useState("");
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
     async function handleSubmit(e: any) {
         e.preventDefault();
-        axios.post('http://localhost:8080/job/create', {
-            "yearsOfExperience": exp,
-            "languages": languages,
-            "about": about,
-            "jobPosition": jobPos,
-            "skills": skills
-        },{
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }).then(res => {
-            console.log(res.data)
-            setViewSuccess(true)
-        }).catch(err => {
-            console.log(err)
-            router.push('/')
-            alert('Error: Please try again')
-        })
-
+        axios.put('http://localhost:8080/update/company', {
+            "website": website,
+            "headquarters": headquarters,
+            "founded": founded,
+            "companySize": companySize,
+            "about": about
+    }, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    }).then(res => {
+        console.log(res.data);
+        if (pathname === '/completeprofile') {
+            router.push('/company/home');    
+        } else
+            setViewSuccess(true);
+    }).catch(err => {
+        console.log(err);
+    })
     }
 
-
+    useEffect(() => {
+        if (pathname !== '/completeprofile') {
+            axios.get("http://localhost:8080/profile/moredata", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+        }).then(res => {
+            console.log(res.data);
+            setWebsite(res.data.website);
+            setHeadquarters(res.data.headquarters);
+            setFounded(res.data.founded);
+            setCompanySize(res.data.companySize);
+            setAbout(res.data.about);
+        }).catch(err => {
+            console.log(err);
+        });}
+    },
+    []) 
+    
     return (
         <div className="w-full h-full justify-center items-center flex">
             <div className="overflow-y-auto h-screen mt-4 justify-center items-center md:flex">
@@ -53,7 +74,7 @@ export default function CreateJobForm() {
                                 <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                                 <span className="sr-only">Check icon</span>
                             </div>
-                            <div className="ml-3 text-sm font-normal">Job position created successfully.</div>
+                            <div className="ml-3 text-sm font-normal">Profile updated successfully.</div>
                             <button type="button" className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close" onClick={() => setViewSuccess(false)}>
                                 <span className="sr-only">Close</span>
                                 <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -64,27 +85,31 @@ export default function CreateJobForm() {
 
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Job position:
-                                        <input type="text" id="website" className={cssUnit} value={jobPos} onChange={(e) => setJobPos(e.target.value)} required />
+                                        Website:
+                                        <input type="text" id="website" placeholder="www.example.gr" className={cssUnit} value={website} onChange={(e) => setWebsite(e.target.value)} />
                                     </label>
                                 </div>
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Skills:
-                                        <input type="text" id="website" className={cssUnit} value={skills} onChange={(e) => setSkills(e.target.value)} required />
+                                        Headquarters:
+                                        <input type="text" id="headquarters" className={cssUnit} value={headquarters} onChange={(e) => setHeadquarters(e.target.value)} />
                                     </label>
                                 </div>
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Languages:
-                                        <input type="text" id="headquarters" className={cssUnit} value={languages} onChange={(e) => setLanguages(e.target.value)} required />
+                                        Founded:
+                                        <div>{founded}</div>
+                                        <input type="range" id="yearsOfExp" min={1960} max={2023} className={cssUnit} value={founded} onChange={(e) => setFounded(e.target.value)} />
                                     </label>
                                 </div>
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Work experience (minimum years):
-                                        <div>{exp}</div>
-                                        <input type="range" id="yearsOfExp" min={0} max={20} className={cssUnit} value={exp} onChange={(e) => setExp(e.target.value)} />
+                                        Employees:
+                                        <div className="mt-1 flex gap-4">
+                                            <Button size='sm' color={companySize==='Small'?'success':'gray'} pill={true} onClick={()=>setCompanySize('Small')}>0-50</Button>
+                                            <Button size='sm' color={companySize==='Medium'?'success':'gray'} pill={true} onClick={()=>setCompanySize('Medium')}>51-200</Button>
+                                            <Button size='sm' color={companySize==='Large'?'success':'gray'} pill={true} onClick={()=>setCompanySize('Large')}>201+</Button>
+                                        </div>
                                     </label>
                                 </div>
 
@@ -94,20 +119,20 @@ export default function CreateJobForm() {
                                 <div className="mb-6">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         About:
-                                        <textarea id="about" rows={11} className={cssUnit} value={about} onChange={(e) => setAbout(e.target.value)} required />
+                                        <textarea id="about" rows={11} className={cssUnit} value={about} onChange={(e) => setAbout(e.target.value)} />
                                     </label>
                                 </div>
-
+                               
                                 <div className="mb-6 flex justify-start">
-                                    <button type="submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-1/2 sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Upload</button>
+                                    <button type="submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-1/2 sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{pathname==="/completeprofile"?"Complete Registration":"Update Info"}</button>
                                 </div>
                             </div>
                         </div>
 
                     </form>
                 </div>
-
             </div>
         </div>
     )
 }
+

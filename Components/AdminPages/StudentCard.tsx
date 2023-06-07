@@ -29,7 +29,7 @@ export default function StudentCard(props: any) {
             "languages": languages
         },{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             console.log(res.data)
@@ -138,7 +138,7 @@ export default function StudentCard(props: any) {
                     {edit ?
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Birthdate:
-                            <input type="date" id="birthdate" className={cssUnit} onChange={(e) => setBirthdate(e.target.value)} required />
+                            <input type="date" id="birthdate" className={cssUnit} value={birthdate.substring(0, 10)} onChange={(e) => setBirthdate(e.target.value)} required />
                         </label>
                         : <p className="font-normal text-gray-700 dark:text-gray-400">
                             Birthdate: {birthdate.substring(0, 10)}
