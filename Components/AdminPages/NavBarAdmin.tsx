@@ -9,12 +9,15 @@ import { usePathname } from 'next/navigation';
 
 import './NavBarAdmin.css'
 import ThemeBtn from "../ThemeBtn"
+import { useState } from "react"
 
 export default function NavBarAdmin(props: any) {
     const pathname = usePathname();
+    const [category, setCategory] = useState("Student");
 
     function setUser(category: string) {
         props.setUser(category)
+        setCategory(category)
     }
 
     function handleLogout() {
@@ -41,7 +44,7 @@ export default function NavBarAdmin(props: any) {
                 </Navbar.Brand>
 
                 <div className="flex md:order-2">
-                    {pathname === '/admin/home' ? <button type="button" onClick={handleClick} className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Filters</button> : null}
+                    {pathname === '/admin/home' && category === "Student" ? <button type="button" onClick={handleClick} className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Filters</button> : null}
                     {<div className="flex md:hidden">
                         <ThemeBtn />
                     </div>}
