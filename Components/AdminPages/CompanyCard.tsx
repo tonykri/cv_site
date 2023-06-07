@@ -1,14 +1,17 @@
 'use client'
 import axios from "axios";
-import { Card, Tooltip } from "flowbite-react";
+import { Button, Card, Modal, Tooltip } from "flowbite-react";
+import React from "react";
 import { useState } from "react";
 import { AiFillEdit, AiFillSave } from "react-icons/ai";
 import { GiCancel } from "react-icons/gi";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 import Select from 'react-select';
 
 
 export default function CompanyCard(props: any) {
     const [edit, setEdit] = useState(false)
+    const [showModal, setShowModal] = useState(false)
     const [email, setEmail] = useState(props.company.email)
     const [name, setName] = useState(props.company.name)
     const [VATNumber, setVATNumber] = useState(props.company.vatnumber)
@@ -69,7 +72,7 @@ export default function CompanyCard(props: any) {
             "vatNumber": VATNumber,
             "size": size,
             "industry": industry
-        },{
+        }, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
@@ -80,6 +83,20 @@ export default function CompanyCard(props: any) {
         }).catch(err => {
             console.log(err);
             alert(err.response.data)
+        });
+    }
+
+    function DeleteAccount() {
+        axios.delete(`http://localhost:8080/admin/delete/${props.company.id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data);
+            alert("Account deleted successfully");
+            props.Refresh()
+        }).catch(err => {
+            console.log(err);
         });
     }
 
@@ -97,9 +114,9 @@ export default function CompanyCard(props: any) {
                             {name}
                         </h5>
                     }
-                    <div className="text-2xl">
+                    <div className="text-2xl flex gap-4">
                         {edit ?
-                            <div className="flex gap-4">
+                            <div className="flex gap-4 mt-2">
                                 <div onClick={() => setEdit(false)}>
                                     <Tooltip content='Cancel'>
                                         <GiCancel color="red" />
@@ -111,11 +128,44 @@ export default function CompanyCard(props: any) {
                                     </Tooltip>
                                 </div>
                             </div> :
-                            <div onClick={() => setEdit(true)}>
+                            <div className="mt-2" onClick={() => setEdit(true)}>
                                 <Tooltip content='Edit'>
                                     <AiFillEdit />
                                 </Tooltip>
                             </div>}
+                            <React.Fragment>
+                                <Button onClick={() => setShowModal(true)} className="w-full" color="failure">
+                                    Delete
+                                </Button>
+                                <Modal
+                                    show={showModal}
+                                    size="md"
+                                    popup={true}
+                                >
+                                    <Modal.Body>
+                                        <div className="text-center pt-4">
+                                            <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                                            <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                                                Are you sure you want to delete this account?
+                                            </h3>
+                                            <div className="flex justify-center gap-4">
+                                                <Button
+                                                    color="failure"
+                                                    onClick={() => DeleteAccount()}
+                                                >
+                                                    Yes, I'm sure
+                                                </Button>
+                                                <Button
+                                                    color="gray"
+                                                    onClick={() => setShowModal(false)}
+                                                >
+                                                    No, cancel
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </Modal.Body>
+                                </Modal>
+                            </React.Fragment>
                     </div>
                 </div>
 

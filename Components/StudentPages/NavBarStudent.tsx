@@ -25,8 +25,9 @@ export default function NavBarStudent(props: any) {
                 className="barsBG"
             >
                 <Navbar.Brand className="NavBarLogo" href="/student/home">
+                    <img src={'/EduConnectLogoSmall.ico'} alt={"logo"} width={40} height={40}/>
                     <span className=" self-center whitespace-nowrap text-xl font-semibold text-blue-600">
-                        Linkedin
+                        Connect
                     </span>
                 </Navbar.Brand>
 

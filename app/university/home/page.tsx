@@ -21,6 +21,12 @@ export default function Home() {
     <div>
       <NavBarFiltersWrapper setSearchName={setSearchName} setStudents={setStudents} setDepartment={setDepartment} Refresh={Refresh} />
       <StudentsWrapper students={students} searchName={searchName} department={department} search={search} />
+      {/* Footer */} 
+      <footer className="text-center p-2 dark:text-white">
+        <div>
+          <p>© 2023 EduConnect. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   )
 }

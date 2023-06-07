@@ -11,6 +11,14 @@ import { useRouter } from "next/navigation";
 export default function StudentProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
     const [showModal, setShowModal] = useState(false)
+    const [activePanel, setActivePanel] = useState("");
+
+    const handlePanelChange = (panel: any) => { 
+    setActivePanel(panel);
+    props.setPanel(panel);
+    };
+
+
     const [data, setData] = useState({
         firstname: "test",
         lastname: "test",
@@ -51,6 +59,7 @@ export default function StudentProfileSideBar(props: any) {
             console.log(err);
         });
     }
+
 
     return (
         <div className={showSidebar ? "" : "w-20"}>
@@ -104,22 +113,22 @@ export default function StudentProfileSideBar(props: any) {
                         <Sidebar.ItemGroup>
                             <div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("savedCompanies")}>
+                                    <Button color={activePanel === "savedCompanies" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("savedCompanies")}>
                                         Saved Job Offers
                                     </Button>
                                 </div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("EditProfile")}>
+                                    <Button color={activePanel === "EditProfile" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("EditProfile")}>
                                         Edit Profile
                                     </Button>
                                 </div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("changePass")}>
+                                    <Button color={activePanel === "changePass" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("changePass")}>   
                                         Change Password
                                     </Button>
                                 </div>
                                 <div className="mb-4">
-                                    <Button className="w-full" onClick={() => props.setPanel("ContactUniversity")}>
+                                    <Button color={activePanel === "ContactUniversity" ? "purple" : "blue"} className={`w-full`} onClick={() => handlePanelChange("ContactUniversity")}>
                                         Contact University
                                     </Button>
                                 </div>
