@@ -11,7 +11,7 @@ export default function StudentCard(props: any) {
     function saveStudent(){
         axios.get(`http://localhost:8080/save/company/${props.student.id}`,{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             console.log(res);

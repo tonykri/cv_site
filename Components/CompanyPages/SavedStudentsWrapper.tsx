@@ -15,7 +15,7 @@ export default function SavedStudentsWrapper(){
     useEffect(()=>{
         axios.get('http://localhost:8080/viewSaved/students',{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             console.log(res.data)
