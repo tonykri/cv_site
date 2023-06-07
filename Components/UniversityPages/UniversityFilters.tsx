@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Navbar } from "flowbite-react"
+import { Button, Dropdown, Navbar } from "flowbite-react"
 import { useEffect, useState } from "react"
 import { VscChromeClose } from "react-icons/vsc"
 import Select from "react-select";
@@ -9,16 +9,16 @@ import './NavBarUniversity.css'
 import axios from "axios";
 
 export default function UniversityFilters(props: any) {
-    const [selectedDepartment, setSelectedDepartment] = useState("all");
-    const [departments, setDepartments] = useState([{ value: "all", label: "All" }])
+    const [selectedDepartment, setSelectedDepartment] = useState("All");
+    const [departments, setDepartments] = useState([{ value: "All", label: "All" }])
 
     useEffect(()=>{
         axios.get(`http://localhost:8080/departments`,{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res=>{
-            let temp = [{ value: "all", label: "All" }]
+            let temp = [{ value: "All", label: "All" }]
             for (const data of res.data)
                 temp.push({ value: data.department, label: data.department})
             setDepartments(temp)
@@ -50,12 +50,15 @@ export default function UniversityFilters(props: any) {
 
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Department:
-                        <Select
-                        className="dark:text-red-900"
-                            defaultValue={departments[0]}
-                            onChange={setDepartment}
-                            options={departments}
-                        />
+                        <Dropdown
+                            label={selectedDepartment}
+                            dismissOnClick={true}
+                            color={'gray'}
+                        >
+                            {departments.map((department) => (<Dropdown.Item onClick={() => setDepartment(department)}>
+                                {department.label}
+                            </Dropdown.Item>))}
+                        </Dropdown>
                     </label>
 
                     <div className="mt-2 lg:mt-4">

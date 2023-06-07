@@ -12,7 +12,7 @@ export default function CompanyCard(props:any) {
     function saveJobOffer(){
         axios.get(`http://localhost:8080/save/student/${props.job.id}`,{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             console.log(res);
@@ -23,7 +23,7 @@ export default function CompanyCard(props:any) {
     function Apply(){
         axios.get(`http://localhost:8080/job/apply/${props.job.id}`,{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             console.log(res);

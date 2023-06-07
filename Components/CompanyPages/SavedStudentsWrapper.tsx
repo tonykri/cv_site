@@ -15,7 +15,7 @@ export default function SavedStudentsWrapper(){
     useEffect(()=>{
         axios.get('http://localhost:8080/viewSaved/students',{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             console.log(res.data)
@@ -28,7 +28,7 @@ export default function SavedStudentsWrapper(){
     },[])
 
     return(
-        <div className="container mx-auto my-5 h-screen overflow-y-auto">
+        <div className="container mx-auto my-5 h-screen">
             {students.length===0 && <div className="w-full h-full flex justify-center">
                 <h1 className="text-2xl text-center mt-4">No saved students</h1>
                 </div>}
