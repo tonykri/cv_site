@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Navbar } from "flowbite-react"
+import { Button, Dropdown, Navbar } from "flowbite-react"
 import { useState } from "react"
 import { VscChromeClose } from "react-icons/vsc"
 import Select from "react-select";
@@ -46,13 +46,16 @@ export default function CompanyFilters(props: any) {
 
                 <Navbar.Collapse>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Languages:
-                        <Select
-                        className="dark:text-red-900"
-                            defaultValue={languages[0]}
-                            onChange={setLanguages}
-                            options={languages}
-                        />
+                        Languages:
+                        <Dropdown
+                            label={selectedLanguage}
+                            dismissOnClick={true}
+                            color={'gray'}
+                        >
+                            {languages.map((language) => (<Dropdown.Item onClick={() => setLanguages(language)}>
+                                {language.label}
+                            </Dropdown.Item>))}
+                        </Dropdown>
                     </label>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Experience (min): {minYears}

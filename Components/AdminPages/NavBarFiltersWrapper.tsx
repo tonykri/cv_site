@@ -18,7 +18,7 @@ export default function NavBarFiltersWrapper() {
 
     const [certificates, setCertificates] = useState(false)
     const [minYears, setMinYears] = useState("0")
-    const [selectedLanguage, setSelectedLanguage] = useState("all");
+    const [selectedLanguage, setSelectedLanguage] = useState("All");
     const [search, setSearch] = useState(false)
 
     const [languages, setLanguages] = useState("All");
