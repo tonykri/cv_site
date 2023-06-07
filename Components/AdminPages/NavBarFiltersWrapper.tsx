@@ -21,8 +21,8 @@ export default function NavBarFiltersWrapper() {
     const [selectedLanguage, setSelectedLanguage] = useState("all");
     const [search, setSearch] = useState(false)
 
-    const [languages, setLanguages] = useState("all");
-    const [industry, setIndustry] = useState("all");
+    const [languages, setLanguages] = useState("All");
+    const [industry, setIndustry] = useState("All");
     const [companySize, setCompanySize] = useState("all");
     const [maxYears, setMaxYears] = useState("100");
     const [data, setData] = useState([{

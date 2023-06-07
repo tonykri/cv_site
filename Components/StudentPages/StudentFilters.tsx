@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Navbar } from "flowbite-react"
+import { Button, Dropdown, Navbar } from "flowbite-react"
 import { useState } from "react"
 import { VscChromeClose } from "react-icons/vsc"
 import Select from "react-select";
@@ -9,8 +9,8 @@ import './NavBarStudent.css'
 
 export default function StudentFilters(props: any) {
     const [maxYears, setMaxYears] = useState("20")
-    const [selectedLanguage, setSelectedLanguage] = useState("all");
-    const [selectedIndustry, setSelectedIndustry] = useState("all");
+    const [selectedLanguage, setSelectedLanguage] = useState("All");
+    const [selectedIndustry, setSelectedIndustry] = useState("All");
 
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
@@ -24,7 +24,7 @@ export default function StudentFilters(props: any) {
 
 
     const languages = [
-        { value: "all", label: "All" },
+        { value: "All", label: "All" },
         { value: "English", label: "English" },
         { value: "Greek", label: "Greek" },
         { value: "French", label: "French" },
@@ -34,7 +34,7 @@ export default function StudentFilters(props: any) {
     };
 
     const industries = [
-        { value: "all", label: "All" },
+        { value: "All", label: "All" },
         { value: "Technology", label: "Technology" },
         { value: "Telecommunications", label: "Telecommunications" },
         { value: "Healthcare", label: "Healthcare" },
@@ -42,6 +42,7 @@ export default function StudentFilters(props: any) {
         { value: "Retail", label: "Retail" },
         { value: "Finance", label: "Finance" },
         { value: "Energy", label: "Energy" },
+        { value: "Economics", label: "Economics" },
         { value: "Construction", label: "Construction" },
         { value: "Education", label: "Education" },
         { value: "Transportation", label: "Transportation" },
@@ -78,12 +79,15 @@ export default function StudentFilters(props: any) {
 
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Languages:
-                        <Select
-                            className="dark:text-red-900"
-                            defaultValue={languages[0]}
-                            onChange={setLanguages}
-                            options={languages}
-                        />
+                        <Dropdown
+                            label={selectedLanguage}
+                            dismissOnClick={true}
+                            color={'gray'}
+                        >
+                            {languages.map((language) => (<Dropdown.Item onClick={() => setLanguages(language)}>
+                                {language.label}
+                            </Dropdown.Item>))}
+                        </Dropdown>
                     </label>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Experience (max): {maxYears}
@@ -91,12 +95,15 @@ export default function StudentFilters(props: any) {
                     </label>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Industry:
-                        <Select
-                            className="dark:text-red-900"
-                            defaultValue={industries[0]}
-                            onChange={setIndustry}
-                            options={industries}
-                        />
+                        <Dropdown
+                            label={selectedIndustry}
+                            dismissOnClick={true}
+                            color={'gray'}
+                        >
+                            {industries.map((industry) => (<Dropdown.Item onClick={() => setIndustry(industry)}>
+                                {industry.label}
+                            </Dropdown.Item>))}
+                        </Dropdown>
                     </label>
 
                     <div className="mt-2 lg:mt-4">

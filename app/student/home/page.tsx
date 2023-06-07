@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 
 
 export default function Home() {
-  const [languages, setLanguages] = useState("all");
-  const [industry, setIndustry] = useState("all");
+  const [languages, setLanguages] = useState("All");
+  const [industry, setIndustry] = useState("All");
   const [companySize, setCompanySize] = useState("all");
   const [maxYears, setMaxYears] = useState("100");
   const [jobs, setJobs] = useState([]);
