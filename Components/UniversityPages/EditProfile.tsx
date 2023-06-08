@@ -43,10 +43,10 @@ export default function EditProfile() {
     function handleSubmit(e: any) {
         e.preventDefault();
         axios.put(`http://localhost:8080/update/university`, {
-            founded: founded,
-            email: email,
-            website: website,
-            about: about
+            "founded": founded,
+            "email": email,
+            "website": website,
+            "about": about
         }, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -72,6 +72,22 @@ export default function EditProfile() {
             console.log(err)
         });
     }, [search])
+
+    useEffect(() => { 
+        axios.get("http://localhost:8080/profile/moredata", {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}` 
+            }
+        }).then(res => {
+            console.log(res.data);
+            setWebsite(res.data.website)
+            setFounded(res.data.founded)
+            setAbout(res.data.about)
+            setEmail(res.data.email)
+        }).catch(err => {
+            console.log(err);
+        });
+    }, [])
 
 
     return (
