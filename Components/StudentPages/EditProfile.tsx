@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Select from "react-select";
+import { Dropdown } from "flowbite-react";
 
 export default function EditProfile() {
     const pathname = usePathname();
@@ -138,12 +139,16 @@ export default function EditProfile() {
                                     {pathname === "/completeprofile" ? <><span>
                                     University: <span style={{ color: 'red' }}>*</span>
                                     </span>
-                                        <Select
-                                        className="dark:text-red-900"
-                                            defaultValue={universities[0]}
-                                            onChange={setUniversity}
-                                            options={universities}
-                                        /> </>:  
+                                        <Dropdown
+                                            label={selectedUniversity}
+                                            dismissOnClick={true}
+                                            color={'gray'}
+                                        >
+                                            {universities.map((university) => (<Dropdown.Item onClick={() => setUniversity(university)}>
+                                                {university.label}
+                                            </Dropdown.Item>))}
+                                        </Dropdown>
+                                         </>:  
                                         <>University:
                                         <input type="text" id="university" className={cssUnit} value={selectedUniversity} onChange={(e) => setSchool(e.target.value)}  disabled /></>
                                         }
@@ -154,12 +159,16 @@ export default function EditProfile() {
                                     {pathname === "/completeprofile" ? <><span>
                                     Department: <span style={{ color: 'red' }}>*</span>
                                     </span>
-                                        <Select
-                                        className="dark:text-red-900"
-                                            defaultValue={departments[0]}
-                                            onChange={setDepartment}
-                                            options={departments}
-                                        /></>:
+                                        <Dropdown
+                                            label={selectedDepartment}
+                                            dismissOnClick={true}
+                                            color={'gray'}
+                                        >
+                                            {departments.map((department) => (<Dropdown.Item onClick={() => setDepartment(department)}>
+                                                {department.label}
+                                            </Dropdown.Item>))}
+                                        </Dropdown>
+                                        </>:
                                         <>Department:
                                         <input type="text" id="department" className={cssUnit} value={selectedDepartment} onChange={(e) => setSchool(e.target.value)} disabled /></>
                                         }
