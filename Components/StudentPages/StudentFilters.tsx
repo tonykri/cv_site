@@ -28,6 +28,8 @@ export default function StudentFilters(props: any) {
         { value: "English", label: "English" },
         { value: "Greek", label: "Greek" },
         { value: "French", label: "French" },
+        { value: "German", label: "German" },
+        { value: "Spanish", label: "Spanish" },
     ];
     const setLanguages = (selected: any) => {
         setSelectedLanguage(selected.value);
@@ -42,7 +44,6 @@ export default function StudentFilters(props: any) {
         { value: "Retail", label: "Retail" },
         { value: "Finance", label: "Finance" },
         { value: "Energy", label: "Energy" },
-        { value: "Economics", label: "Economics" },
         { value: "Construction", label: "Construction" },
         { value: "Education", label: "Education" },
         { value: "Transportation", label: "Transportation" },
@@ -57,7 +58,8 @@ export default function StudentFilters(props: any) {
         { value: "Aerospace", label: "Aerospace" },
         { value: "Hospitality", label: "Hospitality" },
         { value: "Insurance", label: "Insurance" },
-        { value: "Consulting", label: "Consulting" }
+        { value: "Consulting", label: "Consulting" },
+        { value: "Navy", label: "Navy" }
     ]
     const setIndustry = (selected: any) => {
         setSelectedIndustry(selected.value);

@@ -55,7 +55,8 @@ export default function CompanyCard(props: any) {
         { value: "Aerospace", label: "Aerospace" },
         { value: "Hospitality", label: "Hospitality" },
         { value: "Insurance", label: "Insurance" },
-        { value: "Consulting", label: "Consulting" }
+        { value: "Consulting", label: "Consulting" },
+        { value: "Navy", label: "Navy" }
     ]
     const setIndustry = (selected: any) => {
         setSelectedIndustry(selected.value);

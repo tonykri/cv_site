@@ -27,6 +27,8 @@ export default function CompanyFilters(props: any) {
         { value: "English", label: "English" },
         { value: "Greek", label: "Greek" },
         { value: "French", label: "French" },
+        { value: "German", label: "German" },
+        { value: "Spanish", label: "Spanish" },
     ];
     const setLanguages = (selected: any) => {
         setSelectedLanguage(selected.value);
