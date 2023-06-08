@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TbNorthStar } from 'react-icons/tb'
 import { usePathname } from 'next/navigation';
 import axios from "axios";
@@ -37,6 +37,22 @@ export default function EditProfile() {
         });
     }
 
+    useEffect(() => {
+        axios.get("http://localhost:8080/profile/moredata", {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data);
+            setLastname(res.data.lastname);
+            setFirstname(res.data.firstname);
+            setBirthdate(res.data.birthdate);
+        }).catch(err => {
+            console.log(err);
+        });
+    },
+    []) 
+
     return (
         <div className="w-full h-full justify-center items-center flex">
         <form onSubmit={handleSubmit} className="">
@@ -66,7 +82,7 @@ export default function EditProfile() {
             <div className="mb-6">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Birthdate:
-                    <input type="date" id="date" className={cssUnit} value={birthdate} onChange={(e) => setBirthdate(e.target.value)} required />
+                    <input type="date" id="date" className={cssUnit} value={birthdate.substring(0, 10)} onChange={(e) => setBirthdate(e.target.value)} required />
                 </label>
             </div>
             <div className="mb-6 flex justify-start">
