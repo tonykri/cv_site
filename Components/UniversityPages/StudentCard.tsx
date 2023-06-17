@@ -82,7 +82,7 @@ export default function StudentCard(props:any) {
                     <br></br>
                     {props.student.companyName ?
                         <p className="font-normal text-gray-700 dark:text-gray-400">
-                            Currently working in: {props.student.companyName}
+                            Currently Working at: {props.student.companyName}
                         </p>
                         : <p className="font-normal text-gray-700 dark:text-gray-400">
                             Status: Unemployed                            

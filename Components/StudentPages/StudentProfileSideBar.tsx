@@ -83,19 +83,19 @@ export default function StudentProfileSideBar(props: any) {
                                             {data.firstname} {data.lastname}
                                         </h5>
 
-                                        {data.companyName === "" ? <> <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
-                                            Company:
-                                        </span>    
-                                        <span className="text-sm text-gray-500 dark:text-gray-400">
-                                            {data.companyName}
-                                        </span></> : <>
+                                        {data.companyName === "" ? <>
                                         <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
                                             Status:
                                         </span>    
                                         <span className="text-sm text-gray-500 dark:text-gray-400">
                                             Unemployed
-                                        </span>
-                                        </>}
+                                        </span> </> 
+                                        : <> <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
+                                            Currently Working at:
+                                        </span>    
+                                        <span className="text-sm text-gray-500 dark:text-gray-400">
+                                            {data.companyName}
+                                        </span></> }
 
                                         <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
                                             Email:
