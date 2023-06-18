@@ -12,7 +12,7 @@ export default function CompanyProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
     const [showModal, setShowModal] = useState(false)
 
-    const [activePanel, setActivePanel] = useState("");
+    const [activePanel, setActivePanel] = useState("SavedStudents");
 
     const handlePanelChange = (panel: any) => { 
     setActivePanel(panel);

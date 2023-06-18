@@ -10,7 +10,7 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 export default function UniversityProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
 
-    const [activePanel, setActivePanel] = useState("");
+    const [activePanel, setActivePanel] = useState("statistics");
 
     const handlePanelChange = (panel: any) => { 
     setActivePanel(panel);

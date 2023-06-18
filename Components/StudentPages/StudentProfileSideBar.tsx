@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 export default function StudentProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
     const [showModal, setShowModal] = useState(false)
-    const [activePanel, setActivePanel] = useState("");
+    const [activePanel, setActivePanel] = useState("savedCompanies");
 
     const handlePanelChange = (panel: any) => { 
     setActivePanel(panel);
