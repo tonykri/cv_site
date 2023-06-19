@@ -23,10 +23,12 @@ export default function Statistics() {
     return (
         <div className="w-full h-full justify-center items-center">
             <h1 className="text-4xl mt-4 text-center">Statistics</h1>
-            <div className="h-screen mt-2 justify-center items-center flex">
-                <h1 className="text-xl">Unemployment rate:</h1>
-                <div>
-                    <input type="range" min={0} max={100} value={percentage} disabled/>  {percentage}%
+            <div className="h-screen mt-2 justify-center items-center md:flex">
+                <div className="block">
+                    <h1 className="text-xl mb-4">Unemployment rate:</h1>
+                    <div>
+                        <input type="range" min={0} max={100} value={percentage} disabled/>  {percentage}%
+                    </div>
                 </div>
             </div>
 
