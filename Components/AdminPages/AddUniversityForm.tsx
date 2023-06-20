@@ -83,7 +83,7 @@ export default function AddUniversityForm() {
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 VAT Number:
-                                <input type="number" id="vatNumber" className={cssUnit} value={vatNumber} onChange={(e) => setVatNumber(parseInt(e.target.value, 10))} required />
+                                <input type="number" id="vatNumber" className={cssUnit} value={vatNumber} onChange={(e) => setVatNumber(e.target.value)} required />
                             </label>
                         </div>
 
