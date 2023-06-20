@@ -21,7 +21,7 @@ export default function UniversityProfileSideBar(props: any) {
         name: "test",
         email: "test",
         headquarters: "test",
-        vatnumber: "test"
+        vatNumber: "test"
     })
 
     const router = useRouter();
