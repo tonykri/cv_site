@@ -78,7 +78,7 @@ export default function UniversityProfileSideBar(props: any) {
                                             VAT Number:
                                         </span>
                                         <span className="text-sm text-gray-500 dark:text-gray-400">
-                                            {data.vatnumber}
+                                            {data.vatNumber}
                                         </span>
                                         
                                     </div>
