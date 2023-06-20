@@ -2,7 +2,11 @@
     cursor:pointer;
 }
 .barsBG{
-    background-color: #fafafa;
+    background-color: rgb(203 213 225);
+}
+
+.filtersNavbar {
+    background-color: rgb(224, 233, 245); 
 }
 
 .Departments{

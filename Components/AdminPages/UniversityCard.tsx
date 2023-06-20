@@ -6,6 +6,8 @@ import { useState } from "react";
 import { AiFillEdit, AiFillSave } from "react-icons/ai";
 import { GiCancel } from "react-icons/gi";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { useTheme } from "next-themes";
+
 
 
 export default function UniversityCard(props:any) {
@@ -17,7 +19,7 @@ export default function UniversityCard(props:any) {
     const [website, setWebsite] = useState(props.university.website)
     const [headquarters, setHeadquarters] = useState(props.university.headquarters)
     const [founded, setFounded] = useState(props.university.founded)
-
+    const { theme } = useTheme();
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
@@ -45,10 +47,20 @@ export default function UniversityCard(props:any) {
         });
     }
 
+    // Define the background color based on the theme
+  let backgroundColor;
+  if (theme === "light") {
+    backgroundColor = "rgb(203 213 225)";
+  } else if (theme === "dark") {
+    backgroundColor = "rgb(31 41 55)";
+  } else {
+    backgroundColor = "transparent";
+  }
+
     return (
         <div>
 
-            <Card className="mt-3">
+            <Card className="mt-3"  style={{ backgroundColor }}>
             <div className="flex justify-between">
                     {edit ?
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

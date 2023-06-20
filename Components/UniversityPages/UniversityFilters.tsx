@@ -39,7 +39,7 @@ export default function UniversityFilters(props: any) {
             <Navbar
                 fluid={true}
                 rounded={true}
-                className="mt-2"
+                className="mt-1 filtersNavbar"
             >
 
                 <div className="flex">

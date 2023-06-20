@@ -1,10 +1,11 @@
 'use client'
 import axios from "axios";
 import { Button, Card } from "flowbite-react";
+import { useTheme } from "next-themes";
 
 
 export default function NotificationCard(props:any) {
-
+    const { theme } = useTheme();
 
     function AcceptStudent(id:string){
         axios.get(`http://localhost:8080/job/accept/${props.notification.applicationId}`, {
@@ -36,9 +37,19 @@ export default function NotificationCard(props:any) {
       });
     }
 
+        // Define the background color based on the theme
+  let backgroundColor;
+  if (theme === "light") {
+    backgroundColor = "rgb(203 213 225)";
+  } else if (theme === "dark") {
+    backgroundColor = "rgb(31 41 55)";
+  } else {
+    backgroundColor = "transparent";
+  }
+
     return (
         <div>
-            <Card className="mt-3">
+            <Card className="mt-3" style={{ backgroundColor }}>
                 <div className="mx-4">
                     <div className="flex justify-between">
                         <p className="font-bold text-2xl text-gray-700 dark:text-gray-400">

@@ -3,10 +3,12 @@ import axios from "axios";
 import { Card, Tooltip } from "flowbite-react";
 import { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
+import { useTheme } from "next-themes";
 
 
 export default function StudentCard(props: any) {
     const [saved, setSaved] = useState(props.student.saved)
+    const { theme } = useTheme();
 
     function saveStudent(){
         axios.get(`http://localhost:8080/save/company/${props.student.id}`,{
@@ -19,10 +21,20 @@ export default function StudentCard(props: any) {
         }).catch(err => console.error(err))
     }
 
+  // Define the background color based on the theme
+  let backgroundColor;
+  if (theme === "light") {
+    backgroundColor = "rgb(203 213 225)";
+  } else if (theme === "dark") {
+    backgroundColor = "rgb(31 41 55)";
+  } else {
+    backgroundColor = "transparent";
+  }
+
     return (
         <div>
 
-            <Card className="mt-3">
+            <Card className="mt-3" style={{ backgroundColor }}>
                 <div className="flex justify-between">
                 <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                     {props.student.firstname} {props.student.lastname}

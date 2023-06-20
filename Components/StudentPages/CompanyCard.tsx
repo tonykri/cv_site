@@ -3,11 +3,13 @@ import axios from "axios";
 import { Button, Card, Tooltip } from "flowbite-react";
 import { useState } from "react";
 import { AiFillStar } from 'react-icons/ai'
+import { useTheme } from "next-themes";
 
 
 export default function CompanyCard(props:any) {
     const [saved, setSaved] = useState(props.job.saved);
     const [applied, setApplied] = useState(props.job.applied);
+    const { theme } = useTheme();
 
     function saveJobOffer(){
         axios.get(`http://localhost:8080/save/student/${props.job.id}`,{
@@ -31,10 +33,20 @@ export default function CompanyCard(props:any) {
         }).catch(err => console.error(err))
     }
 
+  // Define the background color based on the theme
+  let backgroundColor;
+  if (theme === "light") {
+    backgroundColor = "rgb(203 213 225)";
+  } else if (theme === "dark") {
+    backgroundColor = "rgb(31 41 55)";
+  } else {
+    backgroundColor = "transparent";
+  }
+
     return (
         <div>
 
-            <Card className="mt-3">
+            <Card className="mt-3" style={{ backgroundColor }}>
                 <div className="flex justify-between">
                     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         Job Position: {props.job.jobPosition}
