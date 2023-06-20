@@ -61,28 +61,28 @@ export default function NotificationCard(props:any) {
                         </div>
                     </div>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        firstname: {props.notification.firstname} 
+                        First Name: {props.notification.firstname} 
                     </p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        lastname: {props.notification.lastname} 
+                        Last Name: {props.notification.lastname} 
                     </p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        email: {props.notification.email} 
+                        Email: {props.notification.email} 
                     </p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        birthdate: {props.notification.birthdate.substring(0,10)} 
+                        Birthdate: {props.notification.birthdate.substring(0,10)} 
                     </p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        university: {props.notification.university} 
+                        University: {props.notification.university} 
                     </p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        department: {props.notification.department} 
+                        Department: {props.notification.department} 
                     </p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        languages: {props.notification.languages} 
+                        Languages: {props.notification.languages} 
                     </p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        years of work experience: {props.notification.yearsOfExperience} 
+                        Years of work experience: {props.notification.yearsOfExperience} 
                     </p>
                 </div>
             </Card>

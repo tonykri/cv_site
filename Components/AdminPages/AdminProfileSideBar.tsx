@@ -9,7 +9,7 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 export default function AdminProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
 
-    const [activePanel, setActivePanel] = useState("");
+    const [activePanel, setActivePanel] = useState("createAdmin");
 
     const handlePanelChange = (panel: any) => { 
     setActivePanel(panel);

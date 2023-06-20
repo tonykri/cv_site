@@ -65,6 +65,14 @@ export default function StudentCard(props: any) {
                     <p className="font-normal text-gray-700 dark:text-gray-400">
                         DiplomaId: {props.student.diplomaId}
                     </p>
+                    <br></br>
+                    {props.student.companyName ?
+                        <p className="font-normal text-gray-700 dark:text-gray-400">
+                            Currently Working at: {props.student.companyName}
+                        </p>
+                        : <p className="font-normal text-gray-700 dark:text-gray-400">
+                            Status: Unemployed                            
+                        </p>} 
                 </div>
             </Card>
         </div>

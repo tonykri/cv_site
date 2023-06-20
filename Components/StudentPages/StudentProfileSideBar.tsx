@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 export default function StudentProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
     const [showModal, setShowModal] = useState(false)
-    const [activePanel, setActivePanel] = useState("");
+    const [activePanel, setActivePanel] = useState("savedCompanies");
 
     const handlePanelChange = (panel: any) => { 
     setActivePanel(panel);
@@ -83,19 +83,19 @@ export default function StudentProfileSideBar(props: any) {
                                             {data.firstname} {data.lastname}
                                         </h5>
 
-                                        {data.companyName === "" ? <> <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
-                                            Company:
-                                        </span>    
-                                        <span className="text-sm text-gray-500 dark:text-gray-400">
-                                            {data.companyName}
-                                        </span></> : <>
+                                        {data.companyName === "" ? <>
                                         <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
                                             Status:
                                         </span>    
                                         <span className="text-sm text-gray-500 dark:text-gray-400">
                                             Unemployed
-                                        </span>
-                                        </>}
+                                        </span> </> 
+                                        : <> <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
+                                            Currently Working at:
+                                        </span>    
+                                        <span className="text-sm text-gray-500 dark:text-gray-400">
+                                            {data.companyName}
+                                        </span></> }
 
                                         <span className="text-md mt-2 text-gray-700 dark:text-gray-200">
                                             Email:

@@ -15,7 +15,7 @@ export default function UniversityCard(props:any) {
     const [showModal, setShowModal] = useState(false)
     const [email, setEmail] = useState(props.university.email)
     const [name, setName] = useState(props.university.name)
-    const [VATNumber, setVATNumber] = useState(props.university.vatnumber)
+    const [vatNumber, setVatNumber] = useState(props.university.vatNumber)
     const [website, setWebsite] = useState(props.university.website)
     const [headquarters, setHeadquarters] = useState(props.university.headquarters)
     const [founded, setFounded] = useState(props.university.founded)
@@ -32,7 +32,7 @@ export default function UniversityCard(props:any) {
             "founded": founded,
             "website": website,
             "email": email,
-            "vatNumber": VATNumber
+            "vatNumber": vatNumber
         },{
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -129,10 +129,10 @@ export default function UniversityCard(props:any) {
                         {edit ?
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             VATNumber:
-                            <input type="number" id="VATNumber" className={cssUnit} value={VATNumber} onChange={(e) => setVATNumber(e.target.value)} required />
+                            <input type="number" id="vatNumber" className={cssUnit} value={vatNumber} onChange={(e) => setVatNumber(e.target.value)} required />
                         </label>
                         : <p className="font-normal text-gray-700 dark:text-gray-400">
-                            VATNumber: {VATNumber}
+                            VATNumber: {vatNumber}
                         </p>}
                 </div>
             </Card>

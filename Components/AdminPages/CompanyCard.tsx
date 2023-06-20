@@ -15,7 +15,7 @@ export default function CompanyCard(props: any) {
     const [showModal, setShowModal] = useState(false)
     const [email, setEmail] = useState(props.company.email)
     const [name, setName] = useState(props.company.name)
-    const [VATNumber, setVATNumber] = useState(props.company.vatnumber)
+    const [vatNumber, setVatNumber] = useState(props.company.vatNumber)
     const [website, setWebsite] = useState(props.company.website)
     const [headquarters, setHeadquarters] = useState(props.company.headquarters)
     const [founded, setFounded] = useState(props.company.founded)
@@ -72,7 +72,7 @@ export default function CompanyCard(props: any) {
             "founded": founded,
             "website": website,
             "email": email,
-            "vatNumber": VATNumber,
+            "vatNumber": vatNumber,
             "size": size,
             "industry": industry
         }, {
@@ -218,10 +218,10 @@ export default function CompanyCard(props: any) {
                     {edit ?
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             VATNumber:
-                            <input type="number" id="VATNumber" className={cssUnit} value={VATNumber} onChange={(e) => setVATNumber(e.target.value)} required />
+                            <input type="number" id="vatNumber" className={cssUnit} value={vatNumber} onChange={(e) => setVatNumber(e.target.value)} required />
                         </label>
                         : <p className="font-normal text-gray-700 dark:text-gray-400">
-                            VATNumber: {VATNumber}
+                            VATNumber: {vatNumber}
                         </p>}
                     {edit ?
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

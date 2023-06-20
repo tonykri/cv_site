@@ -43,10 +43,10 @@ export default function EditProfile() {
     function handleSubmit(e: any) {
         e.preventDefault();
         axios.put(`http://localhost:8080/update/university`, {
-            founded: founded,
-            email: email,
-            website: website,
-            about: about
+            "founded": founded,
+            "email": email,
+            "website": website,
+            "about": about
         }, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -73,15 +73,32 @@ export default function EditProfile() {
         });
     }, [search])
 
+    useEffect(() => { 
+        axios.get("http://localhost:8080/profile/moredata", {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}` 
+            }
+        }).then(res => {
+            console.log(res.data);
+            setWebsite(res.data.website)
+            setFounded(res.data.founded)
+            setAbout(res.data.about)
+            setEmail(res.data.email)
+        }).catch(err => {
+            console.log(err);
+        });
+    }, [])
+
 
     return (
         <div className="container mx-auto">
             <div className="flex overflow-x-scroll gap-4 mt-4">
                 {departments.map(dept => <DepartmentBtn Refresh={Refresh} key={dept.id} department={dept} />)}
             </div>
-            <div className="w-full h-full flex align-middle justify-center">
+            <div className="w-full h-full align-middle justify-center">
+                <h1 className="text-4xl mt-4 text-center">Edit Your Profile</h1>
                 <div className="mx-auto">
-                    <div className="container mx-auto my-5 justify-center flex">
+                    <div className="container mx-auto my-5 justify-center md:flex">
                         <form onSubmit={handleSubmitDepartment}>
                             {viewSuccess && <div id="toast-success" className=" m-auto mt-5 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
                                 <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">

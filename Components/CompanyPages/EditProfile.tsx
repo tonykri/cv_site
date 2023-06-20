@@ -64,7 +64,8 @@ export default function EditProfile() {
     []) 
     
     return (
-        <div className="w-full h-full justify-center items-center flex">
+        <div className="w-full h-full justify-center items-center">
+            <h1 className="text-4xl mt-4 text-center">Edit Your Profile</h1>
             <div className="overflow-y-auto h-screen mt-4 justify-center items-center md:flex">
                 <div>
 

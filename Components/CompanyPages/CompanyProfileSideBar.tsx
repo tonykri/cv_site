@@ -12,7 +12,7 @@ export default function CompanyProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
     const [showModal, setShowModal] = useState(false)
 
-    const [activePanel, setActivePanel] = useState("");
+    const [activePanel, setActivePanel] = useState("SavedStudents");
 
     const handlePanelChange = (panel: any) => { 
     setActivePanel(panel);
@@ -23,7 +23,7 @@ export default function CompanyProfileSideBar(props: any) {
         name: "test",
         email: "test",
         headquarters: "test",
-        vatnumber: "test"
+        vatNumber: "test"
     })
 
     const router = useRouter();
@@ -96,7 +96,7 @@ export default function CompanyProfileSideBar(props: any) {
                                             VAT Number:
                                         </span>
                                         <span className="text-sm text-gray-500 dark:text-gray-400">
-                                            {data.vatnumber}
+                                            {data.vatNumber}
                                         </span>
                                         
                                     </div>

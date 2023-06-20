@@ -14,20 +14,21 @@ export default function AddUniversityForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [VATNumber, setVATNumber] = useState("");
+    const [vatNumber, setVatNumber] = useState("");
 
 
     const cssUnit = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
     async function handleSubmit(e: any) {
         e.preventDefault();
+        console.log("vatNumber:", vatNumber);
         axios.post('http://localhost:8080/create/university', {
             "universityName": name,
             "headquarters": headquarters,
             "founded": founded,
             "website": website,
             "email": email,
-            "VATNumber": VATNumber,
+            "vatNumber": vatNumber,
             "password": password,
             "confirmPassword": confirmPassword,
             "about": about
@@ -42,7 +43,7 @@ export default function AddUniversityForm() {
             setConfirmPassword("")
             setEmail("")
             setPassword("")
-            setVATNumber("")
+            setVatNumber("")
             setWebsite("")
             setFounded("1960")
             setHeadquarters("")
@@ -82,7 +83,7 @@ export default function AddUniversityForm() {
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 VAT Number:
-                                <input type="number" id="VAT" className={cssUnit} value={VATNumber} onChange={(e) => setVATNumber(e.target.value)} required/>
+                                <input type="number" id="vatNumber" className={cssUnit} value={vatNumber} onChange={(e) => setVatNumber(parseInt(e.target.value, 10))} required />
                             </label>
                         </div>
 

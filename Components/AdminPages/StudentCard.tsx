@@ -19,6 +19,8 @@ export default function StudentCard(props: any) {
     const [email, setEmail] = useState(props.student.email)
     const [university, setUniversity] = useState(props.student.university)
     const [languages, setLanguages] = useState(props.student.languages)
+    const [companyName, setCompanyName] = useState(props.student.companyName)
+    
     const { theme } = useTheme();
 
     function handleUpdate() {
@@ -28,7 +30,8 @@ export default function StudentCard(props: any) {
             "lastname": lastname,
             "birthdate": birthdate,
             "email": email,
-            "languages": languages
+            "languages": languages,
+            "companyName": companyName
         },{
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -171,6 +174,14 @@ export default function StudentCard(props: any) {
                         : <p className="font-normal text-gray-700 dark:text-gray-400">
                             Languages: {languages}
                         </p>}
+                    <br></br>
+                    {companyName ?
+                        <p className="font-normal text-gray-700 dark:text-gray-400">
+                            Currently Working at: {companyName}
+                        </p>
+                        : <p className="font-normal text-gray-700 dark:text-gray-400">
+                            Status: Unemployed                            
+                        </p>} 
                 </div>
             </Card>
         </div>
