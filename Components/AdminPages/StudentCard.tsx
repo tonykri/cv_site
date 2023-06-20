@@ -6,6 +6,7 @@ import { useState } from "react";
 import { AiFillEdit, AiFillSave } from "react-icons/ai";
 import { GiCancel } from "react-icons/gi";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { useTheme } from "next-themes";
 
 
 export default function StudentCard(props: any) {
@@ -19,6 +20,8 @@ export default function StudentCard(props: any) {
     const [university, setUniversity] = useState(props.student.university)
     const [languages, setLanguages] = useState(props.student.languages)
     const [companyName, setCompanyName] = useState(props.student.companyName)
+    
+    const { theme } = useTheme();
 
     function handleUpdate() {
         axios.post('http://localhost:8080/admin/editStudent', {
@@ -60,10 +63,20 @@ export default function StudentCard(props: any) {
         });
     }
 
+    // Define the background color based on the theme
+  let backgroundColor;
+  if (theme === "light") {
+    backgroundColor = "rgb(203 213 225)";
+  } else if (theme === "dark") {
+    backgroundColor = "rgb(31 41 55)";
+  } else {
+    backgroundColor = "transparent";
+  }
+
     return (
         <div>
 
-            <Card className="mt-3">
+            <Card className="mt-3" style={{ backgroundColor }}>
                 <div className="flex justify-between">
                     {edit ?
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
