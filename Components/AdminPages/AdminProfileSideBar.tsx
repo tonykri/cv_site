@@ -4,10 +4,11 @@ import { Avatar, Button, Card, Sidebar } from "flowbite-react";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { GiHamburgerMenu } from 'react-icons/gi'
-
+import { useTheme } from "next-themes";
 
 export default function AdminProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
+    const { theme } = useTheme();
 
     const [activePanel, setActivePanel] = useState("createAdmin");
 
@@ -38,6 +39,18 @@ export default function AdminProfileSideBar(props: any) {
         });
     }, [])
 
+// Define the background color based on the theme
+  let backgroundColor;
+  if (theme === "light") {
+    backgroundColor = "rgb(203 213 225)";
+  } else if (theme === "dark") {
+    backgroundColor = "rgb(31 41 55)";
+  } else {
+    backgroundColor = "rgb(203 213 225)";
+  }
+
+//I have to put somewhere the background color of the sidebar (style={{ backgroundColor }}) but I don't know where
+
     return (
         <div className={showSidebar ? "" : "w-20"}>
             <div className={showSidebar ? "h-screen flex" : "h-screen hidden"}>
@@ -47,10 +60,10 @@ export default function AdminProfileSideBar(props: any) {
                             <Sidebar.Item
                                 onClick={() => setShowSidebar(false)}
                             >
-                                <GiHamburgerMenu />
+                                <GiHamburgerMenu/>
                             </Sidebar.Item>
                             <div className="max-w-md">
-                                <Card>
+                                <Card style={{ backgroundColor }}>
                                     <div className="flex flex-col items-center pb-10">
                                         <div className="flex flex-wrap gap-2">
                                             <Avatar rounded={true} />
@@ -104,11 +117,11 @@ export default function AdminProfileSideBar(props: any) {
             <div className={showSidebar ? "h-screen hidden w-2" : "h-screen flex w-2"}>
                 <Sidebar aria-label="Default sidebar example">
                     <Sidebar.Items>
-                        <Sidebar.ItemGroup>
+                        <Sidebar.ItemGroup> 
                             <Sidebar.Item
                                 onClick={() => setShowSidebar(true)}
                             >
-                                <GiHamburgerMenu />
+                                <GiHamburgerMenu/>
                             </Sidebar.Item>
                         </Sidebar.ItemGroup>
                     </Sidebar.Items>
