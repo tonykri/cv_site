@@ -1,19 +1,6 @@
 import Image from 'next/image';
-import { useTheme } from "next-themes";
-import ThemeBtn from "../ThemeBtn"
-
 
 export default function LogoInfoSide() {
-    const { theme } = useTheme();
-
-    let backgroundImage;
-    if (theme === "light") {
-      backgroundImage = '/EduConnect_LightTheme.png';
-    } else if (theme === "dark") {
-      backgroundImage = '/EduConnect_DarkTheme.png';
-    } else {
-        backgroundImage = '/EduConnect_LightTheme.png';
-    }
 
     return (
         <div className="w-full">
@@ -24,7 +11,7 @@ export default function LogoInfoSide() {
                             Welcome to
                         </div>
                         <div className='flex'>
-                            <img src={ backgroundImage } alt={"logo"} width={120} height={60}/>
+                            <Image src={'/EduConnectLogoSmall.ico'} alt={"logo"} width={50} height={50}/><span className='text-blue-600 mt-1 text-2xl'> Connect</span>
                         </div>
                     </div>
                 </div>
