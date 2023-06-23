@@ -34,7 +34,7 @@ export default function NotificationsWrapper(){
     return(
         <div className="container mx-auto my-5">
             {notifications.length === 0 && <div className="w-full h-full flex justify-center">
-                <h1 className="text-2xl text-center mt-4">No saved job offers</h1>
+                <h1 className="text-2xl text-center mt-4">No new job applicants</h1>
                 </div>}
             {notifications.map(notification => (<NotificationCard key={notification.studentId} Refresh={Refresh} notification={notification}/>))}
         </div>
