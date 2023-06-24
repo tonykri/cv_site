@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useTheme } from "next-themes";
-
+import SidebarItemGroup from "flowbite-react/lib/esm/components/Sidebar/SidebarItemGroup";
 
 export default function UniversityProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
@@ -118,11 +118,20 @@ export default function UniversityProfileSideBar(props: any) {
                                         Contact Admin
                                     </Button>
                                 </div>
-
                             </div>
                         </Sidebar.ItemGroup>
+                        <SidebarItemGroup>
+                        <div className="mt-auto">
+                            {/* Footer */} 
+                            <footer className="text-center p-2 dark:text-white">
+                            <div>
+                                <p>© 2023 EduConnect.</p> 
+                                <p>All rights reserved.</p>
+                            </div>
+                            </footer>
+                        </div>
+                        </SidebarItemGroup>
                     </Sidebar.Items>
-
                 </Sidebar>
 
             </div>
