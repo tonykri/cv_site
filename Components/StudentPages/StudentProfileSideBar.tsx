@@ -7,6 +7,7 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
+import SidebarItemGroup from "flowbite-react/lib/esm/components/Sidebar/SidebarItemGroup";
 
 
 export default function StudentProfileSideBar(props: any) {
@@ -196,8 +197,18 @@ export default function StudentProfileSideBar(props: any) {
 
                             </div>
                         </Sidebar.ItemGroup>
+                        <SidebarItemGroup>
+                        <div className="mt-auto">
+                            {/* Footer */} 
+                            <footer className="text-center p-2 dark:text-white">
+                            <div>
+                                <p>© 2023 EduConnect.</p> 
+                                <p>All rights reserved.</p>
+                            </div>
+                            </footer>
+                        </div>
+                        </SidebarItemGroup>
                     </Sidebar.Items>
-
                 </Sidebar>
 
             </div>
@@ -215,6 +226,5 @@ export default function StudentProfileSideBar(props: any) {
                 </Sidebar>
             </div>
         </div>
-
     )
 }
