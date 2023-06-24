@@ -5,12 +5,10 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { GiHamburgerMenu } from 'react-icons/gi'
-import { useTheme } from "next-themes";
 import SidebarItemGroup from "flowbite-react/lib/esm/components/Sidebar/SidebarItemGroup";
 
 export default function UniversityProfileSideBar(props: any) {
     const [showSidebar, setShowSidebar] = useState(false)
-    const { theme } = useTheme();
 
     const [activePanel, setActivePanel] = useState("statistics");
 
@@ -43,15 +41,6 @@ export default function UniversityProfileSideBar(props: any) {
         });
     }, [])
 
-// Define the background color based on the theme
-  let backgroundColor;
-  if (theme === "light") {
-    backgroundColor = "rgb(203 213 225)";
-  } else if (theme === "dark") {
-    backgroundColor = "rgb(31 41 55)";
-  } else {
-    backgroundColor = "rgb(203 213 225)";
-  }
 
     return (
         <div className={showSidebar ? "" : "w-20"}>
@@ -65,7 +54,7 @@ export default function UniversityProfileSideBar(props: any) {
                                 <GiHamburgerMenu />
                             </Sidebar.Item>
                             <div className="max-w-md">
-                                <Card style={{ backgroundColor }}>
+                                <Card>
                                     <div className="flex flex-col items-center pb-10">
                                         <div className="flex flex-wrap gap-2">
                                             <Avatar rounded={true} />

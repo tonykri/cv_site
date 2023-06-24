@@ -6,7 +6,6 @@ import { IoMdNotificationsOutline } from 'react-icons/io'
 import { FiLogOut } from 'react-icons/fi'
 import AdminSearchForm from "./AdminSearchForm"
 import { usePathname } from 'next/navigation';
-import { useTheme } from "next-themes";
 
 import './NavBarAdmin.css'
 import ThemeBtn from "../ThemeBtn"
@@ -15,7 +14,6 @@ import { useState } from "react"
 export default function NavBarAdmin(props: any) {
     const pathname = usePathname();
     const [category, setCategory] = useState("Student");
-    const { theme } = useTheme();
 
     function setUser(category: string) {
         props.setUser(category)
@@ -31,15 +29,6 @@ export default function NavBarAdmin(props: any) {
         props.setShowFilters((prevState: boolean) => !prevState);
     };
 
-    let backgroundImage;
-    if (theme === "light") {
-      backgroundImage = '/EduConnect_LightTheme.png';
-    } else if (theme === "dark") {
-      backgroundImage = '/EduConnect_DarkTheme.png';
-    } else {
-        backgroundImage = '/EduConnect_LightTheme.png';
-    }
-
     return (
         <div>
             <Navbar
@@ -48,7 +37,10 @@ export default function NavBarAdmin(props: any) {
                 className="barsBG"
             >
                 <Navbar.Brand className="NavBarLogo" href="/admin/home">
-                    <img src={ backgroundImage } alt={"logo"} width={120} height={60}/>
+                    <img src={'/EduConnectLogoSmall.ico'} alt={"logo"} width={40} height={40}/>
+                    <span className=" self-center whitespace-nowrap text-xl font-semibold text-blue-600">
+                        Connect
+                    </span>
                 </Navbar.Brand>
 
                 <div className="flex md:order-2">

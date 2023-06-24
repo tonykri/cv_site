@@ -5,14 +5,12 @@ import { AiOutlineUser } from 'react-icons/ai'
 import { FiLogOut } from 'react-icons/fi'
 import StudentSearchForm from "./StudentSearchForm"
 import { usePathname } from 'next/navigation';
-import { useTheme } from "next-themes";
 
 import './NavBarStudent.css'
 import ThemeBtn from "../ThemeBtn"
 
 export default function NavBarStudent(props: any) {
     const pathname = usePathname();
-    const { theme } = useTheme();
 
     function handleLogout() {
         localStorage.removeItem('token')
@@ -23,24 +21,18 @@ export default function NavBarStudent(props: any) {
         props.setShowFilters((prevState: boolean) => !prevState);
     };
 
-    let backgroundImage;
-    if (theme === "light") {
-      backgroundImage = '/EduConnect_LightTheme.png';
-    } else if (theme === "dark") {
-      backgroundImage = '/EduConnect_DarkTheme.png';
-    } else {
-        backgroundImage = '/EduConnect_LightTheme.png';
-    }
-
     return (
         <div>
             <Navbar
                 fluid={true}
                 rounded={true}
                 className="barsBG"
-            >
+            >   
                 <Navbar.Brand className="NavBarLogo" href="/student/home">
-                    <img src={ backgroundImage } alt={"logo"} width={120} height={60}/>
+                    <img src={'/EduConnectLogoSmall.ico'} alt={"logo"} width={40} height={40}/>
+                    <span className=" self-center whitespace-nowrap text-xl font-semibold text-blue-600">
+                        Connect
+                    </span>
                 </Navbar.Brand>
 
                 <div className="flex md:order-2">
