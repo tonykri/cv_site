@@ -49,7 +49,7 @@ export default function CompanyCard(props:any) {
             <Card className="mt-3" style={{ backgroundColor }}>
                 <div className="flex justify-between">
                     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        Job Position: {props.job.jobPosition}
+                        {props.job.jobPosition}
                     </h5>
                     <div className="text-4xl flex gap-4">
                         <Tooltip content={saved ? "Remove" : "Save"}>
